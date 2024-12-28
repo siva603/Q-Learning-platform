@@ -49,6 +49,7 @@ function generateWrongSound() {
     oscillator.stop(audioContext.currentTime + 0.3);
 }
 
+
 function generateClickSound() {
     if (!audioContext) return;
     
@@ -127,8 +128,14 @@ function showLoadingScreen() {
 }
 
 async function startQuiz(category) {
+
     if (category === 'r20') {
         showR20Selection();
+        return;
+    }
+
+    if (category === 'r23') {
+        showR23Selection();
         return;
     }
     
@@ -342,6 +349,8 @@ function showPopAnimation(text, color) {
     setTimeout(() => popup.remove(), 1000);
 }
 
+// this is for r20 regulation staring function 
+
 function showR20Selection() {
     const welcomeScreen = document.getElementById('welcomeScreen');
     welcomeScreen.innerHTML = `
@@ -354,7 +363,7 @@ function showR20Selection() {
             </div>
         </div>
         <div class="category-grid">
-            <button onclick="selectBranch('cse')" class="category-btn">
+            <button onclick="selectBranch('cse','R20')" class="category-btn">
                 <div class="btn-content">
                     <span class="icon">💻</span>
                     <span class="title">CSE</span>
@@ -363,7 +372,7 @@ function showR20Selection() {
                 </div>
             </button>
             
-            <button onclick="selectBranch('ece')" class="category-btn">
+            <button onclick="selectBranch('ece','R20')" class="category-btn">
                 <div class="btn-content">
                     <span class="icon">📡</span>
                     <span class="title">ECE</span>
@@ -372,7 +381,7 @@ function showR20Selection() {
                 </div>
             </button>
             
-            <button onclick="selectBranch('eee')" class="category-btn">
+            <button onclick="selectBranch('eee','R20')" class="category-btn">
                 <div class="btn-content">
                     <span class="icon">⚡</span>
                     <span class="title">EEE</span>
@@ -381,7 +390,7 @@ function showR20Selection() {
                 </div>
             </button>
             
-            <button onclick="selectBranch('civil')" class="category-btn">
+            <button onclick="selectBranch('civil','R20')" class="category-btn">
                 <div class="btn-content">
                     <span class="icon">🏗️</span>
                     <span class="title">CIVIL</span>
@@ -397,11 +406,70 @@ function showR20Selection() {
     `;
 }
 
-function selectBranch(branch) {
+// this is for r23 regulation  staring function
+
+function showR23Selection() {
     const welcomeScreen = document.getElementById('welcomeScreen');
     welcomeScreen.innerHTML = `
         <div class="entrance-animation">
-            <h1 class="title">${branch.toUpperCase()}</h1>
+            <h1 class="title">R23 Regulation</h1>
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+        </div>
+        <div class="category-grid">
+            <button onclick="selectBranchR23('cse','R23')" class="category-btn">
+                <div class="btn-content">
+                    <span class="icon">💻</span>
+                    <span class="title">CSE</span>
+                    <span class="description">Computer Science Engineering</span>
+                    <div class="btn-background"></div>
+                </div>
+            </button>
+            
+            <button onclick="selectBranchR23('ece','R23')" class="category-btn">
+                <div class="btn-content">
+                    <span class="icon">📡</span>
+                    <span class="title">ECE</span>
+                    <span class="description">Electronics & Communication</span>
+                    <div class="btn-background"></div>
+                </div>
+            </button>
+            
+            <button onclick="selectBranchR23('eee','R23')" class="category-btn">
+                <div class="btn-content">
+                    <span class="icon">⚡</span>
+                    <span class="title">EEE</span>
+                    <span class="description">Electrical & Electronics</span>
+                    <div class="btn-background"></div>
+                </div>
+            </button>
+            
+            <button onclick="selectBranchR23('civil','R23')" class="category-btn">
+                <div class="btn-content">
+                    <span class="icon">🏗️</span>
+                    <span class="title">CIVIL</span>
+                    <span class="description">Civil Engineering</span>
+                    <div class="btn-background"></div>
+                </div>
+            </button>
+        </div>
+        <button onclick="exitR20()" class="exit-btn">
+            <span class="btn-text">Back to Main Menu</span>
+            <span class="btn-icon">↩</span>
+        </button>
+    `;
+}
+
+// this is for r20 and r23 branch function
+
+function selectBranch(branch,regulation) {
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    welcomeScreen.innerHTML = `
+        <div class="entrance-animation">
+            <h1 class="title">${regulation,branch.toUpperCase()}</h1>
             <div class="floating-shapes">
                 <div class="shape"></div>
                 <div class="shape"></div>
@@ -420,7 +488,37 @@ function selectBranch(branch) {
                 </button>
             `).join('')}
         </div>
-        <button onclick="showR20Selection()" class="exit-btn">
+        <button onclick="showR23Selection()" class="exit-btn">
+            <span class="btn-text">Back to Branches</span>
+            <span class="btn-icon">↩</span>
+        </button>
+    `;
+}
+
+function selectBranchR23(branch,regulation) {
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    welcomeScreen.innerHTML = `
+        <div class="entrance-animation">
+            <h1 class="title">${regulation,branch.toUpperCase()}</h1>
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+        </div>
+        <div class="category-grid">
+            ${[1, 2, 3, 4].map(year => `
+                <button onclick="selectYearR23('${branch}', ${year})" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">📚</span>
+                        <span class="title">${year}${getYearSuffix(year)} Year</span>
+                        <span class="description">R23 Academic Year ${year}</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+            `).join('')}
+        </div>
+        <button onclick="showR23Selection()" class="exit-btn">
             <span class="btn-text">Back to Branches</span>
             <span class="btn-icon">↩</span>
         </button>
@@ -433,6 +531,8 @@ function getYearSuffix(year) {
     if (year === 3) return 'rd';
     return 'th';
 }
+
+// this is for r20 year  and path also different
 
 function selectYear(branch, year) {
     const welcomeScreen = document.getElementById('welcomeScreen');
@@ -494,6 +594,70 @@ function selectYear(branch, year) {
     });
 }
 
+// this is for r23 year  and path also different
+
+function selectYearR23(branch, year) {
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const syllabusPath = `r23_materials/syllabus/${branch}/year${year}_syllabus.pdf`;
+    welcomeScreen.innerHTML = `
+        <div class="entrance-animation">
+            <h1 class="title">R23 ${year}${getYearSuffix(year)} Year</h1>
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+        </div>
+        <div class="syllabus-container">
+            <div class="pdf-item" id="syllabus-container">
+                <span class="pdf-icon">📚</span>
+                <span class="pdf-title">Year ${year} Syllabus</span>
+                <a href="${syllabusPath}" 
+                   class="pdf-download-btn disabled" 
+                   id="syllabus-download-btn"
+                   target="_blank" 
+                   download>
+                    Download Syllabus
+                </a>
+            </div>
+            <div id="syllabus-status-message" class="pdf-status-message"></div>
+        </div>
+        <div class="category-grid">
+            ${[1, 2].map(sem => `
+                <button onclick="selectSemesterR23('${branch}', ${year}, ${sem})" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">📚</span>
+                        <span class="title">Semester ${sem}</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+            `).join('')}
+        </div>
+        <button onclick="selectBranchR23('${branch}')" class="exit-btn">
+            <span class="btn-text">Back</span>
+            <span class="btn-icon">↩</span>
+        </button>
+    `;
+
+    // Check if syllabus exists and update the button state
+    checkFileExists(syllabusPath).then(exists => {
+        const downloadBtn = document.getElementById('syllabus-download-btn');
+        const statusMessage = document.getElementById('syllabus-status-message');
+        
+        if (exists) {
+            downloadBtn.classList.remove('disabled');
+            statusMessage.textContent = '';
+        } else {
+            downloadBtn.classList.add('disabled');
+            downloadBtn.removeAttribute('href');
+            downloadBtn.removeAttribute('download');
+            statusMessage.textContent = 'Syllabus PDF is not available yet.';
+        }
+    });
+}
+
+// these function for R20 and R23 to get semesters 
+
 function selectSemester(branch, year, semester) {
     const welcomeScreen = document.getElementById('welcomeScreen');
     welcomeScreen.innerHTML = `
@@ -524,6 +688,40 @@ function selectSemester(branch, year, semester) {
     `;
 }
 
+function selectSemesterR23(branch, year, semester) {
+    const welcomeScreen = document.getElementById('welcomeScreen');
+
+    welcomeScreen.innerHTML = `
+        <div class="entrance-animation">
+            <h1 class="title">R23 Semester ${semester}</h1>
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+        </div> 
+        <div class="category-grid">
+            ${[1, 2, 3, 4, 5].map(subject => `
+                <button onclick="selectSubjectR23('${branch}', ${year}, ${semester}, ${subject})" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">📘</span>
+                        <span class="title">Subject ${subject}</span>
+                        <span class="description">${r23Materials[branch]?.[`year${year}`]?.[`sem${semester}`]?.[`subject${subject}`]?.name}</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+            `).join('')}
+        </div>
+        <button onclick="selectYearR23('${branch}', ${year})" class="exit-btn">
+            <span class="btn-text">Back to Semesters</span>
+            <span class="btn-icon">↩</span>
+        </button>
+    `;
+}
+
+// these function for R20 and R23 to get subjects 
+
+
 function selectSubject(branch, year, semester, subject) {
     const welcomeScreen = document.getElementById('welcomeScreen');
     welcomeScreen.innerHTML = `
@@ -553,6 +751,39 @@ function selectSubject(branch, year, semester, subject) {
         </button>
     `;
 }
+
+function selectSubjectR23(branch, year, semester, subject) {
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    welcomeScreen.innerHTML = `
+        <div class="entrance-animation">
+            <h1 class="title">Subject ${subject}</h1>
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+        </div>
+        <div class="category-grid">
+            ${[1, 2, 3, 4, 5].map(unit => `
+                <button onclick="showUnitOptionsR23('${branch}', ${year}, ${semester}, ${subject}, ${unit})" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">📚</span>
+                        <span class="title">Unit ${unit}</span>
+                        <span class="description">${r23Materials[branch]?.[`year${year}`]?.[`sem${semester}`]?.[`subject${subject}`]?.[`unit${unit}`]?.title || `Unit ${unit}`}</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+            `).join('')}
+        </div>
+        <button onclick="selectSemester('${branch}', ${year}, ${semester})" class="exit-btn">
+            <span class="btn-text">Back to Subjects</span>
+            <span class="btn-icon">↩</span>
+        </button>
+    `;
+}
+
+// these function for R20 and R23 to get units 
+
 
 function showUnitOptions(branch, year, semester, subject, unit) {
     const welcomeScreen = document.getElementById('welcomeScreen');
@@ -590,6 +821,45 @@ function showUnitOptions(branch, year, semester, subject, unit) {
         </button>
     `;
 }
+
+function showUnitOptionsR23(branch, year, semester, subject, unit) {
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    welcomeScreen.innerHTML = `
+        <div class="entrance-animation">
+            <h1 class="title">Unit ${unit}</h1>
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+        </div>
+        <div class="category-grid">
+            <button onclick="showLearningMaterialR23('${branch}', ${year}, ${semester}, ${subject}, ${unit})" class="category-btn">
+                <div class="btn-content">
+                    <span class="icon">📖</span>
+                    <span class="title">Learn</span>
+                    <span class="description">Study the material</span>
+                    <div class="btn-background"></div>
+                </div>
+            </button>
+            
+            <button onclick="startR20Quiz('${branch}', ${year}, ${semester}, ${subject}, ${unit})" class="category-btn">
+                <div class="btn-content">
+                    <span class="icon">✍️</span>
+                    <span class="title">Practice</span>
+                    <span class="description">Take the quiz</span>
+                    <div class="btn-background"></div>
+                </div>
+            </button>
+        </div>
+        <button onclick="selectSubject('${branch}', ${year}, ${semester}, ${subject})" class="exit-btn">
+            <span class="btn-text">Back</span>
+            <span class="btn-icon">↩</span>
+        </button>
+    `;
+}
+
+// these function for R20 and R23 to get units for materials
 
 function showLearningMaterial(branch, year, semester, subject, unit) {
     const material = r20Materials[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
@@ -659,6 +929,75 @@ function showLearningMaterial(branch, year, semester, subject, unit) {
     });
 }
 
+function showLearningMaterialR23(branch, year, semester, subject, unit) {
+    const material = r20Materials[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const pdfPath = `r23_materials/${branch}/year${year}/sem${semester}/subject${subject}/unit${unit}/notes.pdf`;
+
+    welcomeScreen.innerHTML = `
+        <div class="learning-container">
+            <h1 class="unit-title">${material.title}</h1>
+            <div class="material-tabs">
+                <button class="tab-btn active" onclick="switchTab(this, 'interactive')">Interactive Content</button>
+                <button class="tab-btn" onclick="switchTab(this, 'pdf')">PDF Materials</button>
+            </div>
+            <div class="material-content-wrapper">
+                <div class="material-content tab-content active" id="interactive-content">
+                    ${material.content.map(item => `
+                        <div class="material-section ${item.type}">
+                            <h2>${item.title}</h2>
+                            ${renderMaterialContent(item)}
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="material-content tab-content" id="pdf-content">
+                    <div class="pdf-list">
+                        <div class="pdf-item">
+                            <span class="pdf-icon">📄</span>
+                            <span class="pdf-title">Unit ${unit} Notes</span>
+                            <a href="${pdfPath}"
+                               class="pdf-download-btn disabled"
+                               id="pdf-download-btn"
+                               target="_blank"
+                               download>
+                                Download PDF
+                            </a>
+                        </div>
+                        <div id="pdf-status-message" class="pdf-status-message"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="material-navigation">
+                <button onclick="startR20Quiz('${branch}', ${year}, ${semester}, ${subject}, ${unit})" class="start-quiz-btn">
+                    <span>Start Quiz</span>
+                    <span>✍️</span>
+                </button>
+                <button onclick="showUnitOptions('${branch}', ${year}, ${semester}, ${subject}, ${unit})" class="exit-btn">
+                    <span class="btn-text">Back</span>
+                    <span class="btn-icon">↩</span>
+                </button>
+            </div>
+        </div>
+    `;
+
+    // Check if PDF exists and update the button state
+    checkFileExists(pdfPath).then(exists => {
+        const downloadBtn = document.getElementById('pdf-download-btn');
+        const statusMessage = document.getElementById('pdf-status-message');
+        
+        if (exists) {
+            downloadBtn.classList.remove('disabled');
+            statusMessage.textContent = '';
+        } else {
+            downloadBtn.classList.add('disabled');
+            downloadBtn.removeAttribute('href');
+            downloadBtn.removeAttribute('download');
+            statusMessage.textContent = 'PDF material is not available for this unit yet.';
+        }
+    });
+}
+
+
 function switchTab(button, tabId) {
     // Remove active class from all tabs and contents
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -696,6 +1035,8 @@ function renderMaterialContent(item) {
     }
 }
 
+// loading the materials data and questions data from json files end
+
 let r20Materials = {};
 
 fetch('r20_materials.json')
@@ -732,6 +1073,46 @@ fetch('r20_questions.json')
         console.log('R20 questions loaded successfully');
     })
     .catch(error => console.error('Error loading R20 questions:', error));
+
+let r23Materials = {};
+
+fetch('r23_materials.json')
+    .then(response => response.json())
+    .then(data => {
+        r20Materials = data;
+        console.log('R23 materials loaded successfully');
+    })
+    .catch(error => console.error('Error loading R23 materials:', error));
+
+function startR23Quiz(branch, year, semester, subject, unit) {
+    showLoadingScreen().then(() => {
+        currentQuestion = 0;
+        score = 0;
+        timeLeft = 30;
+        clearInterval(timer);
+        
+        const quizContainer = document.getElementById('quizContainer');
+        quizContainer.innerHTML = initialQuizHTML;
+        
+        document.getElementById('welcomeScreen').style.display = 'none';
+        quizContainer.style.display = 'block';
+        
+        loadR20Question(branch, year, semester, subject, unit);
+    });
+}
+
+let r23Questions = {};
+
+fetch('r23_questions.json')
+    .then(response => response.json())
+    .then(data => {
+        r20Questions = data;
+        console.log('R20 questions loaded successfully');
+    })
+    .catch(error => console.error('Error loading R23 questions:', error));
+
+
+// loading the materials data and questions data from json files end
 
 function loadR20Question(branch, year, semester, subject, unit) {
     clearInterval(timer);
@@ -775,6 +1156,48 @@ function loadR20Question(branch, year, semester, subject, unit) {
         `Question ${currentQuestion + 1}/${questions.length}`;
 }
 
+function loadR23Question(branch, year, semester, subject, unit) {
+    clearInterval(timer);
+    timeLeft = 30;
+    updateTimer();
+    
+    timer = setInterval(() => {
+        timeLeft--;
+        updateTimer();
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            handleNextR23Question(branch, year, semester, subject, unit);
+        }
+    }, 1000);
+
+    const questions = r23Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
+    const questionData = questions[currentQuestion];
+    
+    if (!questionData) {
+        showR23Result(branch, year, semester, subject, unit);
+        return;
+    }
+
+    document.getElementById('question').textContent = questionData.question;
+    const optionsContainer = document.getElementById('options');
+    optionsContainer.innerHTML = '';
+    
+    const optionLetters = ['A', 'B', 'C', 'D'];
+    questionData.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'option-btn';
+        button.innerHTML = `
+            <span class="option-label">${optionLetters[index]}</span>
+            <span class="option-text">${option}</span>
+        `;
+        button.onclick = () => checkR23Answer(index, branch, year, semester, subject, unit);
+        optionsContainer.appendChild(button);
+    });
+
+    document.getElementById('question-counter').textContent = 
+        `Question ${currentQuestion + 1}/${questions.length}`;
+}
+
 function checkR20Answer(selectedIndex, branch, year, semester, subject, unit) {
     clearInterval(timer);
     const questionData = r20Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`][currentQuestion];
@@ -802,9 +1225,42 @@ function checkR20Answer(selectedIndex, branch, year, semester, subject, unit) {
     }, 2000);
 }
 
+function checkR23Answer(selectedIndex, branch, year, semester, subject, unit) {
+    clearInterval(timer);
+    const questionData = r23Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`][currentQuestion];
+    const buttons = document.querySelectorAll('.option-btn');
+    
+    buttons.forEach(button => {
+        button.disabled = true;
+        button.classList.remove('correct', 'wrong');
+    });
+
+    if (selectedIndex === questionData.correct) {
+        buttons[selectedIndex].classList.add('correct');
+        score++;
+        generateCorrectSound();
+        showPopAnimation('Correct! 🎉', '#4CAF50');
+    } else {
+        buttons[selectedIndex].classList.add('wrong');
+        buttons[questionData.correct].classList.add('correct');
+        generateWrongSound();
+        showPopAnimation('Wrong! 😔', '#f44336');
+    }
+
+    setTimeout(() => {
+        handleNextR23Question(branch, year, semester, subject, unit);
+    }, 2000);
+}
+
+
 function handleNextR20Question(branch, year, semester, subject, unit) {
     currentQuestion++;
     loadR20Question(branch, year, semester, subject, unit);
+}
+
+function handleNextR23Question(branch, year, semester, subject, unit) {
+    currentQuestion++;
+    loadR23Question(branch, year, semester, subject, unit);
 }
 
 function showR20Result(branch, year, semester, subject, unit) {
@@ -847,6 +1303,47 @@ function showR20Result(branch, year, semester, subject, unit) {
     `;
 }
 
+function showR23Result(branch, year, semester, subject, unit) {
+    const questions = r23Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
+    const totalQuestions = questions.length;
+    const percentage = (score / totalQuestions) * 100;
+    const tips = getImprovementTips(score, totalQuestions);
+    
+    const quizContainer = document.getElementById('quizContainer');
+    quizContainer.innerHTML = `
+        <div class="result-container">
+            <h2>Quiz Complete!</h2>
+            <div class="score-display">
+                <div class="score-circle">
+                    <span class="score-text">${percentage.toFixed(1)}%</span>
+                </div>
+                <p>You got ${score} out of ${totalQuestions} questions correct</p>
+            </div>
+            <div class="improvement-tips">
+                <h3>Performance Analysis</h3>
+                <ul>
+                    ${getPerformanceAnalysis(score, totalQuestions)}
+                </ul>
+                <h3>Tips for Improvement</h3>
+                <ul>
+                    ${tips.map(tip => `<li>${tip}</li>`).join('')}
+                </ul>
+            </div>
+            <div class="result-buttons">
+                <button onclick="retryR23Quiz('${branch}', ${year}, ${semester}, ${subject}, ${unit})" class="restart-btn">
+                    <span>Try Again</span>
+                    <span>🔄</span>
+                </button>
+                <button onclick="exitQuiz()" class="home-btn">
+                    <span>Home</span>
+                    <span>🏠</span>
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+
 function getPerformanceAnalysis(score, total) {
     const percentage = (score / total) * 100;
     let analysis = [];
@@ -885,6 +1382,18 @@ function retryR20Quiz(branch, year, semester, subject, unit) {
     quizContainer.innerHTML = initialQuizHTML;
     
     loadR20Question(branch, year, semester, subject, unit);
+}
+
+function retryR20Quiz(branch, year, semester, subject, unit) {
+    currentQuestion = 0;
+    score = 0;
+    timeLeft = 30;
+    clearInterval(timer);
+    
+    const quizContainer = document.getElementById('quizContainer');
+    quizContainer.innerHTML = initialQuizHTML;
+    
+    loadR23Question(branch, year, semester, subject, unit);
 }
 
 function exitR20() {

@@ -1790,3 +1790,59 @@ const r20 = {
 };
 
 questions.r20 = r20;
+
+const r23 = {
+    cse: {
+        year1: {
+            sem1: {
+                subject1: {
+                    unit1: [
+                        {
+                            question: "What is the definition of an algorithm?",
+                            options: [
+                                "A step-by-step procedure to solve a problem",
+                                "A programming language",
+                                "A computer hardware component",
+                                "A type of software"
+                            ],
+                            correct: 0,
+                            explanation: "An algorithm is a step-by-step procedure to solve a specific problem"
+                        },
+                        // Add more questions for unit 1
+                    ],
+                    unit2: [
+                        {
+                            question: "What is the purpose of flowcharts?",
+                            options: [
+                                "To write code",
+                                "To visually represent algorithms",
+                                "To compile programs",
+                                "To debug code"
+                            ],
+                            correct: 1,
+                            explanation: "Flowcharts are used to visually represent algorithms and program logic"
+                        },
+                        // Add more questions for unit 2
+                    ],
+                    // Add more units
+                },
+                // Add more subjects
+            },
+            sem2: {
+                // Similar structure as sem1
+            }
+        },
+        // Add more years
+    },
+    ece: {
+        // Similar structure as CSE
+    },
+    eee: {
+        // Similar structure as CSE
+    },
+    civil: {
+        // Similar structure as CSE
+    }
+};
+
+questions.r23 = r23;
