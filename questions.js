@@ -254,79 +254,6 @@ const questions = {
                 explanation: "The correct sentence is 'He watched the movie yesterday.'"
             },
             {
-                question: "Identify the adjective: 'The blue sky is beautiful.'",
-                options: ["Blue", "Sky", "Is", "Beautiful"],
-                correct: 0,
-                explanation: "'Blue' is the adjective in the sentence."
-            },
-            {
-                question: "What is the plural form of 'mouse'?",
-                options: ["Mouses", "Mice", "Mouse", "Mices"],
-                correct: 1,
-                explanation: "The plural form of 'mouse' is 'mice'."
-            },
-            {
-                question: "Which sentence is written in the future tense?",
-                options: ["She sings.", "She will sing.", "She sang.", "She is singing."],
-                correct: 1,
-                explanation: "'She will sing' is in the future tense."
-            },
-            {
-                question: "Choose the correct conjunction: 'I wanted to go, ___ it was raining.'",
-                options: ["and", "but", "or", "so"],
-                correct: 1,
-                explanation: "The correct sentence is 'I wanted to go, but it was raining.'"
-            },
-            {
-                question: "Identify the verb: 'The dog barked loudly.'",
-                options: ["Dog", "Barked", "Loudly", "The"],
-                correct: 1,
-                explanation: "'Barked' is the verb in the sentence."
-            },
-            {
-                question: "What is the opposite of 'hot'?",
-                options: ["Warm", "Cold", "Cool", "Heat"],
-                correct: 1,
-                explanation: "'Cold' is the opposite of 'hot'."
-            },
-            {
-                question: "Choose the correct preposition: 'The book is ___ the table.'",
-                options: ["on", "in", "at", "with"],
-                correct: 0,
-                explanation: "The correct sentence is 'The book is on the table.'"
-            },
-            {
-                question: "Identify the subject: 'The birds are singing.'",
-                options: ["The", "Birds", "Are", "Singing"],
-                correct: 1,
-                explanation: "'Birds' is the subject of the sentence."
-            },
-            {
-                question: "What is the past participle of 'write'?",
-                options: ["Written", "Wrote", "Writing", "Writes"],
-                correct: 0,
-                explanation: "The past participle of 'write' is 'written'."
-            },
-
-            {
-                question: "Choose the correct antonym for 'increase'.",
-                options: ["Reduce", "Enhance", "Expand", "Grow"],
-                correct: 0,
-                explanation: "'Reduce' is an antonym for 'increase'."
-            },
-            {
-                question: "What is the past tense of 'go'?",
-                options: ["Goes", "Went", "Gone", "Going"],
-                correct: 1,
-                explanation: "The past tense of 'go' is 'went'."
-            },
-            {
-                question: "Complete the sentence: 'She ___ to the market yesterday.'",
-                options: ["go", "gone", "went", "going"],
-                correct: 2,
-                explanation: "The correct sentence is 'She went to the market yesterday.'"
-            },
-            {
                 question: "Identify the adjective in the sentence: 'The beautiful garden is full of flowers.'",
                 options: ["Beautiful", "Garden", "Flowers", "Full"],
                 correct: 0,
@@ -796,90 +723,6 @@ const questions = {
                         ],
                         correct: 0,
                         explanation: "The fork system call creates a new process by duplicating the calling process."
-                    },
-                    {
-                        question: "What does the term 'context switch' refer to?",
-                        options: [
-                            "Switching between user and kernel modes",
-                            "Changing the execution context of a process",
-                            "Switching between threads",
-                            "Changing the state of a process"
-                        ],
-                        correct: 1,
-                        explanation: "A context switch refers to the process of saving the state of the currently executing process and loading the state of the next process."
-                    },
-                    {
-                        question: "Which of the following is not a part of the memory hierarchy?",
-                        options: ["Registers", "Cache", "Hard Drive", "GPU"],
-                        correct: 3,
-                        explanation: "GPU is a specialized processing unit, not part of the memory hierarchy which includes registers, cache, and hard drive."
-                    },
-                    {
-                        question: "What is the role of a device driver?",
-                        options: [
-                            "To manage communication between the OS and hardware devices",
-                            "To schedule processes",
-                            "To control memory allocation",
-                            "To execute applications"
-                        ],
-                        correct: 0,
-                        explanation: "Device drivers allow the operating system to communicate with and control hardware devices."
-                    },
-                    {
-                        question: "Which of the following is true about a multithreaded process?",
-                        options: [
-                            "Each thread has its own memory space",
-                            "Threads share the same memory space",
-                            "Each thread is a separate process",
-                            "Threads do not require synchronization"
-                        ],
-                        correct: 1,
-                        explanation: "Threads within a process share the same memory space, which allows for efficient communication but requires synchronization."
-                    },
-                    {
-                        question: "What is the function of the file system in an operating system?",
-                        options: [
-                            "Manages files and directories",
-                            "Handles input/output operations",
-                            "Manages network connections",
-                            "Schedules processes"
-                        ],
-                        correct: 0,
-                        explanation: "The file system organizes and manages files and directories in an operating system."
-                    },
-                    {
-                        question: "Which type of scheduling algorithm is Round Robin?",
-                        options: ["Preemptive", "Non-preemptive", "Both", "None"],
-                        correct: 0,
-                        explanation: "Round Robin is a preemptive scheduling algorithm where each process is assigned a fixed time slice."
-                    },
-                    {
-                        question: "What is the purpose of a memory manager in an operating system?",
-                        options: [
-                            "To allocate and deallocate memory to processes",
-                            "To perform garbage collection",
-                            "To maintain the file system",
-                            "To schedule CPU tasks"
-                        ],
-                        correct: 0,
-                        explanation: "The memory manager is responsible for allocating and deallocating memory to processes."
-                    },
-                    {
-                        question: "Which of the following is not an example of an operating system?",
-                        options: ["Linux", "Windows", "MacOS", "Java"],
-                        correct: 3,
-                        explanation: "Java is a programming language, not an operating system."
-                    },
-                    {
-                        question: "Which of the following is a type of memory management technique?",
-                        options: [
-                            "Paging",
-                            "Segmentation",
-                            "Fragmentation",
-                            "All of the above"
-                        ],
-                        correct: 3,
-                        explanation: "Paging, segmentation, and fragmentation are all memory management techniques used in operating systems."
                     },
                     {
                         question: "What is the function of an operating system's I/O manager?",
@@ -1892,9 +1735,58 @@ const questions = {
         
 };
 
-
-// Level progression rules
-const levelRules = {
-    questionsPerLevel: 10,
-    minCorrectToAdvance: 7
+const r20 = {
+    cse: {
+        year1: {
+            sem1: {
+                subject1: {
+                    unit1: [
+                        {
+                            question: "What is the definition of an algorithm?",
+                            options: [
+                                "A step-by-step procedure to solve a problem",
+                                "A programming language",
+                                "A computer hardware component",
+                                "A type of software"
+                            ],
+                            correct: 0,
+                            explanation: "An algorithm is a step-by-step procedure to solve a specific problem"
+                        },
+                        // Add more questions for unit 1
+                    ],
+                    unit2: [
+                        {
+                            question: "What is the purpose of flowcharts?",
+                            options: [
+                                "To write code",
+                                "To visually represent algorithms",
+                                "To compile programs",
+                                "To debug code"
+                            ],
+                            correct: 1,
+                            explanation: "Flowcharts are used to visually represent algorithms and program logic"
+                        },
+                        // Add more questions for unit 2
+                    ],
+                    // Add more units
+                },
+                // Add more subjects
+            },
+            sem2: {
+                // Similar structure as sem1
+            }
+        },
+        // Add more years
+    },
+    ece: {
+        // Similar structure as CSE
+    },
+    eee: {
+        // Similar structure as CSE
+    },
+    civil: {
+        // Similar structure as CSE
+    }
 };
+
+questions.r20 = r20;

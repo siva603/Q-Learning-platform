@@ -1,0 +1,296 @@
+{
+    "cse": {
+        "year1": {
+            "sem1": {
+                "subject1": {
+                    "name": "Programming in C",
+                    "unit1": [
+                        {
+                            "question": "What is the correct way to declare a pointer in C?",
+                            "options": [
+                                "int *ptr;",
+                                "pointer int ptr;",
+                                "int ptr*;",
+                                "int &ptr;"
+                            ],
+                            "correct": 0,
+                            "explanation": "The correct syntax for declaring a pointer is 'data_type *pointer_name;'"
+                        },
+                        {
+                            "question": "Which operator is used to access the value at a pointer's address?",
+                            "options": [
+                                "&",
+                                "*",
+                                "->",
+                                "#"
+                            ],
+                            "correct": 1,
+                            "explanation": "The * (dereference) operator is used to access the value stored at a pointer's address"
+                        },
+                        {
+                            "question": "What is the sizeof(int) in a typical 32-bit system?",
+                            "options": [
+                                "2 bytes",
+                                "4 bytes",
+                                "8 bytes",
+                                "1 byte"
+                            ],
+                            "correct": 1,
+                            "explanation": "In a typical 32-bit system, an integer occupies 4 bytes of memory"
+                        },
+                        {
+                            "question": "Which header file is required for printf() function?",
+                            "options": [
+                                "<string.h>",
+                                "<math.h>",
+                                "<stdio.h>",
+                                "<stdlib.h>"
+                            ],
+                            "correct": 2,
+                            "explanation": "printf() function is declared in <stdio.h> header file"
+                        },
+                        {
+                            "question": "What is the output of sizeof('A')?",
+                            "options": [
+                                "1 byte",
+                                "2 bytes",
+                                "4 bytes",
+                                "Depends on compiler"
+                            ],
+                            "correct": 2,
+                            "explanation": "Character constants are treated as integers, so sizeof('A') is typically 4 bytes"
+                        }
+                    ],
+                    "unit2": [
+                        {
+                            "question": "Which loop is guaranteed to execute at least once?",
+                            "options": [
+                                "for loop",
+                                "while loop",
+                                "do-while loop",
+                                "None of these"
+                            ],
+                            "correct": 2,
+                            "explanation": "do-while loop checks the condition after executing the loop body once"
+                        },
+                        {
+                            "question": "What is the correct syntax for an infinite loop?",
+                            "options": [
+                                "for(;;)",
+                                "while(1)",
+                                "do{}while(1)",
+                                "All of these"
+                            ],
+                            "correct": 3,
+                            "explanation": "All these options create an infinite loop in C"
+                        },
+                        {
+                            "question": "What is the break statement used for?",
+                            "options": [
+                                "Skip current iteration",
+                                "Exit the loop or switch",
+                                "Return from function",
+                                "Stop program execution"
+                            ],
+                            "correct": 1,
+                            "explanation": "break statement is used to exit the current loop or switch statement"
+                        },
+                        {
+                            "question": "Which operator has the highest precedence?",
+                            "options": [
+                                "++",
+                                "*",
+                                "+",
+                                "="
+                            ],
+                            "correct": 0,
+                            "explanation": "The increment operator (++) has higher precedence than arithmetic operators"
+                        },
+                        {
+                            "question": "What is the purpose of continue statement?",
+                            "options": [
+                                "Skip rest of loop body",
+                                "Exit the loop",
+                                "Skip next iteration",
+                                "Return from function"
+                            ],
+                            "correct": 0,
+                            "explanation": "continue statement skips the rest of the loop body and continues with next iteration"
+                        }
+                    ],
+                    "unit3": [
+                        {
+                            "question": "What is an array in C?",
+                            "options": [
+                                "Collection of similar data",
+                                "Collection of different data",
+                                "Linked list of data",
+                                "Tree of data"
+                            ],
+                            "correct": 0,
+                            "explanation": "An array is a collection of similar data items stored in contiguous memory locations"
+                        },
+                        {
+                            "question": "How to declare a 2D array?",
+                            "options": [
+                                "int arr[][]",
+                                "int arr[rows][cols]",
+                                "array int arr[rows][cols]",
+                                "int array arr[rows][cols]"
+                            ],
+                            "correct": 1,
+                            "explanation": "2D array is declared using syntax: data_type array_name[rows][columns]"
+                        },
+                        {
+                            "question": "What is array index range for int arr[5]?",
+                            "options": [
+                                "1 to 5",
+                                "0 to 4",
+                                "0 to 5",
+                                "-1 to 4"
+                            ],
+                            "correct": 1,
+                            "explanation": "Array indices start from 0, so range is 0 to size-1"
+                        },
+                        {
+                            "question": "Which operator is used with arrays?",
+                            "options": [
+                                ".",
+                                "->",
+                                "[]",
+                                "*"
+                            ],
+                            "correct": 2,
+                            "explanation": "Square brackets [] are used to access array elements"
+                        },
+                        {
+                            "question": "How to find array size in bytes?",
+                            "options": [
+                                "length(arr)",
+                                "size(arr)",
+                                "sizeof(arr)",
+                                "count(arr)"
+                            ],
+                            "correct": 2,
+                            "explanation": "sizeof() operator returns size of array in bytes"
+                        }
+                    ],
+                    "unit4": [
+                        {
+                            "question": "What is a structure in C?",
+                            "options": [
+                                "User-defined data type",
+                                "Built-in data type",
+                                "Function type",
+                                "Array type"
+                            ],
+                            "correct": 0,
+                            "explanation": "Structure is a user-defined data type that groups related data items"
+                        },
+                        {
+                            "question": "How to access structure members?",
+                            "options": [
+                                "Using .",
+                                "Using ->",
+                                "Using []",
+                                "Both A and B"
+                            ],
+                            "correct": 3,
+                            "explanation": "Structure members are accessed using . (dot) or -> (arrow) operators"
+                        },
+                        {
+                            "question": "What is the size of an empty structure?",
+                            "options": [
+                                "0 bytes",
+                                "1 byte",
+                                "2 bytes",
+                                "4 bytes"
+                            ],
+                            "correct": 1,
+                            "explanation": "Empty structure takes 1 byte of memory"
+                        },
+                        {
+                            "question": "Which keyword is used to define structure?",
+                            "options": [
+                                "struct",
+                                "structure",
+                                "str",
+                                "typedef"
+                            ],
+                            "correct": 0,
+                            "explanation": "struct keyword is used to define a structure"
+                        },
+                        {
+                            "question": "Can we compare structures directly?",
+                            "options": [
+                                "Yes, always",
+                                "No, never",
+                                "Only if same type",
+                                "Only if same size"
+                            ],
+                            "correct": 1,
+                            "explanation": "Structures cannot be compared directly, members must be compared individually"
+                        }
+                    ],
+                    "unit5": [
+                        {
+                            "question": "What is a file pointer?",
+                            "options": [
+                                "Points to file location",
+                                "Points to file content",
+                                "Points to file structure",
+                                "Points to file name"
+                            ],
+                            "correct": 2,
+                            "explanation": "File pointer points to a FILE structure that contains file information"
+                        },
+                        {
+                            "question": "Which mode opens file for reading?",
+                            "options": [
+                                "w",
+                                "r",
+                                "a",
+                                "b"
+                            ],
+                            "correct": 1,
+                            "explanation": "'r' mode opens file for reading"
+                        },
+                        {
+                            "question": "What function is used to read a character?",
+                            "options": [
+                                "getc()",
+                                "scanf()",
+                                "read()",
+                                "input()"
+                            ],
+                            "correct": 0,
+                            "explanation": "getc() function reads a single character from file"
+                        },
+                        {
+                            "question": "Which function closes a file?",
+                            "options": [
+                                "close()",
+                                "fclose()",
+                                "end()",
+                                "stop()"
+                            ],
+                            "correct": 1,
+                            "explanation": "fclose() function is used to close a file"
+                        },
+                        {
+                            "question": "What happens if file doesn't exist in read mode?",
+                            "options": [
+                                "Creates new file",
+                                "Returns NULL",
+                                "Throws error",
+                                "Waits for file"
+                            ],
+                            "correct": 1,
+                            "explanation": "If file doesn't exist in read mode, fopen() returns NULL"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

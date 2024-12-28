@@ -1,0 +1,207 @@
+{
+    "cse": {
+        "year1": {
+            "sem1": {
+                "subject1": {
+                    "name": "Programming in C",
+                    "unit1": {
+                        "title": "Introduction to C Programming",
+                        "content": [
+                            {
+                                "type": "introduction",
+                                "title": "Overview",
+                                "text": "C is a general-purpose programming language created by Dennis Ritchie at Bell Labs. It is one of the most widely used programming languages and has greatly influenced many other languages."
+                            },
+                            {
+                                "type": "concept",
+                                "title": "Basic Structure",
+                                "text": "A C program consists of functions and variables. The main() function is the entry point of every C program. Programs are written using various tokens like keywords, identifiers, constants, strings, and operators."
+                            },
+                            {
+                                "type": "example",
+                                "title": "Hello World Program",
+                                "code": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+                            },
+                            {
+                                "type": "important",
+                                "title": "Key Points",
+                                "points": [
+                                    "C is a compiled language",
+                                    "Case sensitive",
+                                    "Structured programming language",
+                                    "Fast and efficient"
+                                ]
+                            },
+                            {
+                                "type": "practice",
+                                "title": "Practice Exercise",
+                                "problems": [
+                                    "Write a program to print your name",
+                                    "Create a program that prints the sum of two numbers",
+                                    "Write a program to find the area of a circle"
+                                ]
+                            }
+                        ]
+                    },
+                    "unit2": {
+                        "title": "Control Structures",
+                        "content": [
+                            {
+                                "type": "introduction",
+                                "title": "Overview",
+                                "text": "Control structures in C allow you to control the flow of program execution. They include decision-making statements and loops."
+                            },
+                            {
+                                "type": "concept",
+                                "title": "Types of Control Structures",
+                                "text": "C provides three main types of control structures: Sequential (default flow), Selection (if, switch), and Iteration (loops)."
+                            },
+                            {
+                                "type": "example",
+                                "title": "If-Else Example",
+                                "code": "if (marks >= 50) {\n    printf(\"Pass\\n\");\n} else {\n    printf(\"Fail\\n\");\n}"
+                            },
+                            {
+                                "type": "important",
+                                "title": "Key Points",
+                                "points": [
+                                    "if-else for binary decisions",
+                                    "switch for multiple choices",
+                                    "while for entry-controlled loops",
+                                    "do-while for exit-controlled loops",
+                                    "for loop for counter-controlled iterations"
+                                ]
+                            },
+                            {
+                                "type": "practice",
+                                "title": "Practice Exercise",
+                                "problems": [
+                                    "Write a program to check if a number is even or odd",
+                                    "Create a program to find the largest of three numbers",
+                                    "Write a program to print first 10 natural numbers"
+                                ]
+                            }
+                        ]
+                    },
+                    "unit3": {
+                        "title": "Arrays and Strings",
+                        "content": [
+                            {
+                                "type": "introduction",
+                                "title": "Overview",
+                                "text": "Arrays are collections of similar data items stored in contiguous memory locations. Strings are arrays of characters terminated by a null character."
+                            },
+                            {
+                                "type": "concept",
+                                "title": "Array Basics",
+                                "text": "Arrays can be one-dimensional or multi-dimensional. Array indices start from 0. Array size must be fixed and declared at compile time."
+                            },
+                            {
+                                "type": "example",
+                                "title": "Array Declaration and Use",
+                                "code": "int numbers[5] = {1, 2, 3, 4, 5};\nchar name[10] = \"John\";\n\nfor(int i = 0; i < 5; i++) {\n    printf(\"%d \", numbers[i]);\n}"
+                            },
+                            {
+                                "type": "important",
+                                "title": "Key Points",
+                                "points": [
+                                    "Arrays are fixed in size",
+                                    "Array indices start from 0",
+                                    "Strings are null-terminated",
+                                    "2D arrays use row-major ordering"
+                                ]
+                            },
+                            {
+                                "type": "practice",
+                                "title": "Practice Exercise",
+                                "problems": [
+                                    "Write a program to find sum of array elements",
+                                    "Create a program to reverse a string",
+                                    "Write a program to multiply two matrices"
+                                ]
+                            }
+                        ]
+                    },
+                    "unit4": {
+                        "title": "Functions and Structures",
+                        "content": [
+                            {
+                                "type": "introduction",
+                                "title": "Overview",
+                                "text": "Functions are blocks of code that perform specific tasks. Structures are user-defined data types that group related data items."
+                            },
+                            {
+                                "type": "concept",
+                                "title": "Function Types",
+                                "text": "Functions can be categorized as: Library functions (pre-defined) and User-defined functions. Functions can return values and take parameters."
+                            },
+                            {
+                                "type": "example",
+                                "title": "Function Definition",
+                                "code": "int add(int a, int b) {\n    return a + b;\n}\n\nstruct Student {\n    char name[50];\n    int roll_no;\n    float marks;\n};"
+                            },
+                            {
+                                "type": "important",
+                                "title": "Key Points",
+                                "points": [
+                                    "Functions reduce code redundancy",
+                                    "Functions can be recursive",
+                                    "Structures can contain different data types",
+                                    "Structure members are accessed using dot operator"
+                                ]
+                            },
+                            {
+                                "type": "practice",
+                                "title": "Practice Exercise",
+                                "problems": [
+                                    "Write a function to find factorial of a number",
+                                    "Create a structure for storing employee details",
+                                    "Write a recursive function for Fibonacci series"
+                                ]
+                            }
+                        ]
+                    },
+                    "unit5": {
+                        "title": "File Handling",
+                        "content": [
+                            {
+                                "type": "introduction",
+                                "title": "Overview",
+                                "text": "File handling in C allows programs to store and retrieve data from external files. It provides functions for creating, reading, writing, and managing files."
+                            },
+                            {
+                                "type": "concept",
+                                "title": "File Operations",
+                                "text": "Basic file operations include: Opening a file (fopen), Reading from file (fscanf, fgets), Writing to file (fprintf, fputs), and Closing file (fclose)."
+                            },
+                            {
+                                "type": "example",
+                                "title": "File Handling Example",
+                                "code": "FILE *fp;\nfp = fopen(\"data.txt\", \"w\");\nif(fp != NULL) {\n    fprintf(fp, \"Hello World\");\n    fclose(fp);\n}"
+                            },
+                            {
+                                "type": "important",
+                                "title": "Key Points",
+                                "points": [
+                                    "Files must be opened before use",
+                                    "Always close files after use",
+                                    "Check for NULL after opening file",
+                                    "Different modes: r, w, a, r+, w+, a+"
+                                ]
+                            },
+                            {
+                                "type": "practice",
+                                "title": "Practice Exercise",
+                                "problems": [
+                                    "Write a program to copy contents of one file to another",
+                                    "Create a program to count words in a file",
+                                    "Write a program to append text to existing file"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
