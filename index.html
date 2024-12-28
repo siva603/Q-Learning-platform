@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Quest - Interactive Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="entrance-animation">
+                <h1 class="title">Learning Quest</h1>
+                <div class="floating-shapes">
+                    <div class="shape"></div>
+                    <div class="shape"></div>
+                    <div class="shape"></div>
+                </div>
+            </div>
+            <div class="category-grid">
+                <button onclick="startQuiz('aptitude')" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">🧮</span>
+                        <span class="title">Aptitude</span>
+                        <span class="description">Test your mathematical and logical skills</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+                
+                <button onclick="startQuiz('english')" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">📚</span>
+                        <span class="title">English</span>
+                        <span class="description">Enhance your language proficiency</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+                
+                <button onclick="startQuiz('computerScience')" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">💻</span>
+                        <span class="title">Computer Science</span>
+                        <span class="description">Core CS concepts and algorithms</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+                
+                <button onclick="startQuiz('dsa')" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">🔍</span>
+                        <span class="title">DSA</span>
+                        <span class="description">Data Structures & Algorithms</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+                
+                <button onclick="startQuiz('operatingSystem')" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">⚙️</span>
+                        <span class="title">Operating System</span>
+                        <span class="description">Core OS concepts and principles</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+                
+                <button onclick="startQuiz('database')" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">🗄️</span>
+                        <span class="title">Database</span>
+                        <span class="description">SQL and database fundamentals</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <div class="quiz-container" id="quizContainer" style="display: none;">
+            <div class="quiz-header">
+                <div id="timer" class="glow">Time Left: 30s</div>
+                <div id="question-counter">Question 1/10</div>
+            </div>
+            <div class="question-area">
+                <h2 id="question">Question goes here</h2>
+                <div id="options" class="options-grid"></div>
+            </div>
+            <button onclick="exitQuiz()" class="exit-btn">
+                <span class="btn-text">Exit Quiz</span>
+                <span class="btn-icon">↩</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
