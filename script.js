@@ -675,7 +675,7 @@ function selectSemester(branch, year, semester) {
                     <div class="btn-content">
                         <span class="icon">📘</span>
                         <span class="title">Subject ${subject}</span>
-                        <span class="description">Subject ${subject} Content</span>
+                        <span class="description">${r20Materials[branch]?.[`year${year}`]?.[`sem${semester}`]?.[`subject${subject}`]?.name}</span>
                         <div class="btn-background"></div>
                     </div>
                 </button>
@@ -689,6 +689,7 @@ function selectSemester(branch, year, semester) {
 }
 
 function selectSemesterR23(branch, year, semester) {
+    
     const welcomeScreen = document.getElementById('welcomeScreen');
 
     welcomeScreen.innerHTML = `
@@ -1069,17 +1070,19 @@ let r20Questions = {};
 fetch('r20_questions.json')
     .then(response => response.json())
     .then(data => {
-        r20Questions = data;
+        r23Questions = data;
         console.log('R20 questions loaded successfully');
     })
     .catch(error => console.error('Error loading R20 questions:', error));
+
+// loading r23 materials and questions data
 
 let r23Materials = {};
 
 fetch('r23_materials.json')
     .then(response => response.json())
     .then(data => {
-        r20Materials = data;
+        r23Materials = data;
         console.log('R23 materials loaded successfully');
     })
     .catch(error => console.error('Error loading R23 materials:', error));
