@@ -1,7 +1,7 @@
 // Global variables for quiz state
 let currentQuestions = [];
 let currentQuestionIndex = 0;
-let score = 0;
+// let score = 0;
 let currentType = '';
 let currentMethodId = '';
 
@@ -558,7 +558,3 @@ function toggleAccordion(header) {
     }
 }
 
-// Initialize the app
-document.addEventListener('DOMContentLoaded', function() {
-    showAptitudeCategories();
-});
