@@ -183,19 +183,21 @@ function loadQuestion(category) {
         categoryQuestions.shuffled = true;
     }
     
-    const questionData = shuffleOptions(categoryQuestions[currentQuestion]);
+    // Store the shuffled question data for later use
+    const currentQuestionData = categoryQuestions[currentQuestion];
+    currentQuestionData.shuffledData = shuffleOptions(currentQuestionData);
     
-    if (!questionData) {
+    if (!currentQuestionData) {
         showResult(category);
         return;
     }
 
-    document.getElementById('question').textContent = questionData.question;
+    document.getElementById('question').textContent = currentQuestionData.question;
     const optionsContainer = document.getElementById('options');
     optionsContainer.innerHTML = '';
     
     const optionLetters = ['A', 'B', 'C', 'D'];
-    questionData.options.forEach((option, index) => {
+    currentQuestionData.shuffledData.options.forEach((option, index) => {
         const button = document.createElement('button');
         button.className = 'option-btn';
         button.innerHTML = `
@@ -214,8 +216,8 @@ function updateTimer() {
 }
 
 function checkAnswer(selectedIndex, category) {
-    const questionData = shuffleOptions(questions[category][currentLevel][currentQuestion]);
-    const correct = questionData.correct;
+    const currentQuestionData = questions[category][currentLevel][currentQuestion];
+    const correct = currentQuestionData.shuffledData.correct;
     
     const buttons = document.querySelectorAll('.option-btn');
     buttons.forEach(button => button.disabled = true);
@@ -1439,26 +1441,27 @@ function shuffleArray(array) {
 
 // Function to shuffle question options while maintaining the correct answer
 function shuffleOptions(question) {
-    // If question is already shuffled, return it as is
-    if (question.shuffledOptions) {
-        return question;
+    // Create a copy of the question to avoid modifying the original
+    const questionCopy = { ...question };
+    
+    // If options are already shuffled, return the question as is
+    if (questionCopy.shuffledOptions) {
+        return questionCopy;
     }
     
-    const originalOptions = [...question.options];
-    const correctAnswer = originalOptions[question.correct];
+    // Get the correct answer text before shuffling
+    const correctAnswer = questionCopy.options[questionCopy.correct];
     
-    // Shuffle the options
-    const shuffledOptions = shuffleArray([...originalOptions]);
+    // Create a copy of options and shuffle them
+    questionCopy.options = shuffleArray([...questionCopy.options]);
     
     // Find the new index of the correct answer
-    const newCorrectIndex = shuffledOptions.indexOf(correctAnswer);
+    questionCopy.correct = questionCopy.options.indexOf(correctAnswer);
     
-    // Store the shuffled state in the question object
-    question.shuffledOptions = shuffledOptions;
-    question.originalCorrect = question.correct;
-    question.correct = newCorrectIndex;
+    // Mark as shuffled to avoid reshuffling
+    questionCopy.shuffledOptions = true;
     
-    return question;
+    return questionCopy;
 }
 
 // Initialize the app
