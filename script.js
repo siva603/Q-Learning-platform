@@ -176,7 +176,14 @@ function loadQuestion(category) {
     }, 1000);
 
     const categoryQuestions = questions[category][currentLevel];
-    const questionData = categoryQuestions[currentQuestion];
+    
+    // Shuffle questions if not already shuffled
+    if (!categoryQuestions.shuffled) {
+        shuffleArray(categoryQuestions);
+        categoryQuestions.shuffled = true;
+    }
+    
+    const questionData = shuffleOptions(categoryQuestions[currentQuestion]);
     
     if (!questionData) {
         showResult(category);
@@ -199,8 +206,7 @@ function loadQuestion(category) {
         optionsContainer.appendChild(button);
     });
 
-    document.getElementById('question-counter').textContent = 
-        `Question ${currentQuestion + 1}/${categoryQuestions.length}`;
+    document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1}/${categoryQuestions.length}`;
 }
 
 function updateTimer() {
@@ -208,28 +214,22 @@ function updateTimer() {
 }
 
 function checkAnswer(selectedIndex, category) {
-    clearInterval(timer);
-    const questionData = questions[category][currentLevel][currentQuestion];
+    const questionData = shuffleOptions(questions[category][currentLevel][currentQuestion]);
+    const correct = questionData.correct;
+    
     const buttons = document.querySelectorAll('.option-btn');
+    buttons.forEach(button => button.disabled = true);
     
-    buttons.forEach((button, index) => {
-        button.disabled = true;
-        if (index === selectedIndex) {
-            if (index === questionData.correct) {
-                button.classList.add('correct');
-            } else {
-                button.classList.add('wrong');
-            }
-        } else if (index === questionData.correct) {
-            button.classList.add('correct');
-        }
-    });
-    
-    if (selectedIndex === questionData.correct) {
+    if (selectedIndex === correct) {
         score++;
-        showPopAnimation('Correct!', 'green');
+        generateCorrectSound();
+        buttons[selectedIndex].classList.add('correct');
+        showPopAnimation('Correct!', '#4CAF50');
     } else {
-        showPopAnimation('Wrong!', 'red');
+        generateWrongSound();
+        buttons[selectedIndex].classList.add('wrong');
+        buttons[correct].classList.add('correct');
+        showPopAnimation('Wrong!', '#f44336');
     }
     
     setTimeout(() => handleNextQuestion(category), 1500);
@@ -1132,31 +1132,39 @@ function loadR20Question(branch, year, semester, subject, unit) {
     }, 1000);
 
     const questions = r20Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
-    const questionData = questions[currentQuestion];
     
-    if (!questionData) {
-        showR20Result(branch, year, semester, subject, unit);
-        return;
+    if (questions && questions.length > 0) {
+        // Shuffle questions if not already shuffled
+        if (!questions.shuffled) {
+            shuffleArray(questions);
+            questions.shuffled = true;
+        }
+        
+        const questionData = shuffleOptions(questions[currentQuestion]);
+
+        if (!questionData) {
+            showR20Result(branch, year, semester, subject, unit);
+            return;
+        }
+
+        document.getElementById('question').textContent = questionData.question;
+        const optionsContainer = document.getElementById('options');
+        optionsContainer.innerHTML = '';
+        
+        const optionLetters = ['A', 'B', 'C', 'D'];
+        questionData.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-btn';
+            button.innerHTML = `
+                <span class="option-label">${optionLetters[index]}</span>
+                <span class="option-text">${option}</span>
+            `;
+            button.onclick = () => checkR20Answer(index, branch, year, semester, subject, unit);
+            optionsContainer.appendChild(button);
+        });
+
+        document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1}/${questions.length}`;
     }
-
-    document.getElementById('question').textContent = questionData.question;
-    const optionsContainer = document.getElementById('options');
-    optionsContainer.innerHTML = '';
-    
-    const optionLetters = ['A', 'B', 'C', 'D'];
-    questionData.options.forEach((option, index) => {
-        const button = document.createElement('button');
-        button.className = 'option-btn';
-        button.innerHTML = `
-            <span class="option-label">${optionLetters[index]}</span>
-            <span class="option-text">${option}</span>
-        `;
-        button.onclick = () => checkR20Answer(index, branch, year, semester, subject, unit);
-        optionsContainer.appendChild(button);
-    });
-
-    document.getElementById('question-counter').textContent = 
-        `Question ${currentQuestion + 1}/${questions.length}`;
 }
 
 function loadR23Question(branch, year, semester, subject, unit) {
@@ -1174,85 +1182,85 @@ function loadR23Question(branch, year, semester, subject, unit) {
     }, 1000);
 
     const questions = r23Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
-    const questionData = questions[currentQuestion];
     
-    if (!questionData) {
-        showR23Result(branch, year, semester, subject, unit);
-        return;
+    if (questions && questions.length > 0) {
+        // Shuffle questions if not already shuffled
+        if (!questions.shuffled) {
+            shuffleArray(questions);
+            questions.shuffled = true;
+        }
+        
+        const questionData = shuffleOptions(questions[currentQuestion]);
+
+        if (!questionData) {
+            showR23Result(branch, year, semester, subject, unit);
+            return;
+        }
+
+        document.getElementById('question').textContent = questionData.question;
+        const optionsContainer = document.getElementById('options');
+        optionsContainer.innerHTML = '';
+        
+        const optionLetters = ['A', 'B', 'C', 'D'];
+        questionData.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-btn';
+            button.innerHTML = `
+                <span class="option-label">${optionLetters[index]}</span>
+                <span class="option-text">${option}</span>
+            `;
+            button.onclick = () => checkR23Answer(index, branch, year, semester, subject, unit);
+            optionsContainer.appendChild(button);
+        });
+
+        document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1}/${questions.length}`;
     }
-
-    document.getElementById('question').textContent = questionData.question;
-    const optionsContainer = document.getElementById('options');
-    optionsContainer.innerHTML = '';
-    
-    const optionLetters = ['A', 'B', 'C', 'D'];
-    questionData.options.forEach((option, index) => {
-        const button = document.createElement('button');
-        button.className = 'option-btn';
-        button.innerHTML = `
-            <span class="option-label">${optionLetters[index]}</span>
-            <span class="option-text">${option}</span>
-        `;
-        button.onclick = () => checkR23Answer(index, branch, year, semester, subject, unit);
-        optionsContainer.appendChild(button);
-    });
-
-    document.getElementById('question-counter').textContent = 
-        `Question ${currentQuestion + 1}/${questions.length}`;
 }
 
 function checkR20Answer(selectedIndex, branch, year, semester, subject, unit) {
-    clearInterval(timer);
-    const questionData = r20Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`][currentQuestion];
-    const buttons = document.querySelectorAll('.option-btn');
+    const questions = r20Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
+    const questionData = shuffleOptions(questions[currentQuestion]);
+    const correct = questionData.correct;
     
-    buttons.forEach(button => {
-        button.disabled = true;
-        button.classList.remove('correct', 'wrong');
-    });
-
-    if (selectedIndex === questionData.correct) {
-        buttons[selectedIndex].classList.add('correct');
+    const buttons = document.querySelectorAll('.option-btn');
+    buttons.forEach(button => button.disabled = true);
+    
+    if (selectedIndex === correct) {
         score++;
         generateCorrectSound();
-        showPopAnimation('Correct! 🎉', '#4CAF50');
+        buttons[selectedIndex].classList.add('correct');
+        showPopAnimation('Correct!', '#4CAF50');
     } else {
-        buttons[selectedIndex].classList.add('wrong');
-        buttons[questionData.correct].classList.add('correct');
         generateWrongSound();
-        showPopAnimation('Wrong! 😔', '#f44336');
+        buttons[selectedIndex].classList.add('wrong');
+        buttons[correct].classList.add('correct');
+        showPopAnimation('Wrong!', '#f44336');
     }
-
-    setTimeout(() => {
-        handleNextR20Question(branch, year, semester, subject, unit);
-    }, 2000);
+    
+    setTimeout(() => handleNextR20Question(branch, year, semester, subject, unit), 1500);
 }
 
 function checkR23Answer(selectedIndex, branch, year, semester, subject, unit) {
-    clearInterval(timer);
-    const questionData = r23Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`][currentQuestion];
-    const buttons = document.querySelectorAll('.option-btn');
+    const questions = r23Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
+    const questionData = shuffleOptions(questions[currentQuestion]);
+    const correct = questionData.correct;
     
-    buttons.forEach(button => {
-        button.disabled = true;
-        button.classList.remove('correct', 'wrong');
-    });
-
-    if (selectedIndex === questionData.correct) {
-        buttons[selectedIndex].classList.add('correct');
+    const buttons = document.querySelectorAll('.option-btn');
+    buttons.forEach(button => button.disabled = true);
+    
+    if (selectedIndex === correct) {
         score++;
         generateCorrectSound();
-        showPopAnimation('Correct! 🎉', '#4CAF50');
+        buttons[selectedIndex].classList.add('correct');
+        showPopAnimation('Correct!', '#4CAF50');
     } else {
-        buttons[selectedIndex].classList.add('wrong');
-        buttons[questionData.correct].classList.add('correct');
         generateWrongSound();
-        showPopAnimation('Wrong! 😔', '#f44336');
+        buttons[selectedIndex].classList.add('wrong');
+        buttons[correct].classList.add('correct');
+        showPopAnimation('Wrong!', '#f44336');
     }
-
-    setTimeout(() => {
-        handleNextR23Question(branch, year, semester, subject, unit);
-    }, 2000);
+    
+    setTimeout(() => handleNextR23Question(branch, year, semester, subject, unit), 1500);
 }
 
 
@@ -1401,6 +1409,39 @@ function retryR20Quiz(branch, year, semester, subject, unit) {
 
 function exitR20() {
     location.reload();
+}
+
+// Utility function to shuffle an array (Fisher-Yates algorithm)
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Function to shuffle question options while maintaining the correct answer
+function shuffleOptions(question) {
+    // If question is already shuffled, return it as is
+    if (question.shuffledOptions) {
+        return question;
+    }
+    
+    const originalOptions = [...question.options];
+    const correctAnswer = originalOptions[question.correct];
+    
+    // Shuffle the options
+    const shuffledOptions = shuffleArray([...originalOptions]);
+    
+    // Find the new index of the correct answer
+    const newCorrectIndex = shuffledOptions.indexOf(correctAnswer);
+    
+    // Store the shuffled state in the question object
+    question.shuffledOptions = shuffledOptions;
+    question.originalCorrect = question.correct;
+    question.correct = newCorrectIndex;
+    
+    return question;
 }
 
 // Initialize the app
