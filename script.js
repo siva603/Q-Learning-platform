@@ -723,7 +723,7 @@ function selectSemesterR23(branch, year, semester) {
 // these function for R20 and R23 to get subjects 
 
 
-function selectSubject(branch, year, semester, subject) {
+function selectSubject(branch, year, semester, subject, unit) {
     const welcomeScreen = document.getElementById('welcomeScreen');
     welcomeScreen.innerHTML = `
         <div class="entrance-animation">
@@ -753,7 +753,7 @@ function selectSubject(branch, year, semester, subject) {
     `;
 }
 
-function selectSubjectR23(branch, year, semester, subject) {
+function selectSubjectR23(branch, year, semester, subject, unit) {
     const welcomeScreen = document.getElementById('welcomeScreen');
     welcomeScreen.innerHTML = `
         <div class="entrance-animation">
@@ -1132,41 +1132,44 @@ function loadR20Question(branch, year, semester, subject, unit) {
     }, 1000);
 
     const questions = r20Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
+    const questionData = questions[currentQuestion];
     
-    if (questions && questions.length > 0) {
-        // Shuffle questions if not already shuffled
-        if (!questions.shuffled) {
-            shuffleArray(questions);
-            questions.shuffled = true;
-        }
-        
-        const questionData = shuffleOptions(questions[currentQuestion]);
+    if (!questionData) {
+        showR20Result(branch, year, semester, subject, unit);
+        return;
+    }
 
-        if (!questionData) {
-            showR20Result(branch, year, semester, subject, unit);
-            return;
-        }
+    document.getElementById('question').textContent = questionData.question;
+    const optionsContainer = document.getElementById('options');
+    optionsContainer.innerHTML = '';
+    
+    const optionLetters = ['A', 'B', 'C', 'D'];
+    questionData.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'option-btn';
+        button.innerHTML = `
+            <span class="option-label">${optionLetters[index]}</span>
+            <span class="option-text">${option}</span>
+        `;
+        button.onclick = () => checkR20Answer(index, branch, year, semester, subject, unit);
+        optionsContainer.appendChild(button);
+    });
 
-        document.getElementById('question').textContent = questionData.question;
-        const optionsContainer = document.getElementById('options');
-        optionsContainer.innerHTML = '';
-        
-        const optionLetters = ['A', 'B', 'C', 'D'];
-        questionData.options.forEach((option, index) => {
-            const button = document.createElement('button');
-            button.className = 'option-btn';
-            button.innerHTML = `
-                <span class="option-label">${optionLetters[index]}</span>
-                <span class="option-text">${option}</span>
-            `;
-            button.onclick = () => checkR20Answer(index, branch, year, semester, subject, unit);
-            optionsContainer.appendChild(button);
-        });
+    document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1}/${questions.length}`;
+}
 
-        document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1}/${questions.length}`;
+function handleNextR20Question(branch, year, semester, subject, unit) {
+    currentQuestion++;
+    const questions = r20Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
+    
+    if (currentQuestion < questions.length) {
+        loadR20Question(branch, year, semester, subject, unit);
+    } else {
+        showR20Result(branch, year, semester, subject, unit);
     }
 }
 
+// Fix the R23 quiz functions similarly
 function loadR23Question(branch, year, semester, subject, unit) {
     clearInterval(timer);
     timeLeft = 30;
@@ -1182,44 +1185,94 @@ function loadR23Question(branch, year, semester, subject, unit) {
     }, 1000);
 
     const questions = r23Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
+    const questionData = questions[currentQuestion];
     
-    if (questions && questions.length > 0) {
-        // Shuffle questions if not already shuffled
-        if (!questions.shuffled) {
-            shuffleArray(questions);
-            questions.shuffled = true;
-        }
-        
-        const questionData = shuffleOptions(questions[currentQuestion]);
-
-        if (!questionData) {
-            showR23Result(branch, year, semester, subject, unit);
-            return;
-        }
-
-        document.getElementById('question').textContent = questionData.question;
-        const optionsContainer = document.getElementById('options');
-        optionsContainer.innerHTML = '';
-        
-        const optionLetters = ['A', 'B', 'C', 'D'];
-        questionData.options.forEach((option, index) => {
-            const button = document.createElement('button');
-            button.className = 'option-btn';
-            button.innerHTML = `
-                <span class="option-label">${optionLetters[index]}</span>
-                <span class="option-text">${option}</span>
-            `;
-            button.onclick = () => checkR23Answer(index, branch, year, semester, subject, unit);
-            optionsContainer.appendChild(button);
-        });
-
-        document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1}/${questions.length}`;
+    if (!questionData) {
+        showR23Result(branch, year, semester, subject, unit);
+        return;
     }
+
+    document.getElementById('question').textContent = questionData.question;
+    const optionsContainer = document.getElementById('options');
+    optionsContainer.innerHTML = '';
+    
+    const optionLetters = ['A', 'B', 'C', 'D'];
+    questionData.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'option-btn';
+        button.innerHTML = `
+            <span class="option-label">${optionLetters[index]}</span>
+            <span class="option-text">${option}</span>
+        `;
+        button.onclick = () => checkR23Answer(index, branch, year, semester, subject, unit);
+        optionsContainer.appendChild(button);
+    });
+
+    document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1}/${questions.length}`;
+}
+
+function handleNextR23Question(branch, year, semester, subject, unit) {
+    currentQuestion++;
+    const questions = r23Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
+    
+    if (currentQuestion < questions.length) {
+        loadR23Question(branch, year, semester, subject, unit);
+    } else {
+        showR23Result(branch, year, semester, subject, unit);
+    }
+}
+
+// Update the startR20Quiz and startR23Quiz functions
+function startR20Quiz(branch, year, semester, subject, unit) {
+    showLoadingScreen().then(() => {
+        currentQuestion = 0;
+        score = 0;
+        timeLeft = 30;
+        clearInterval(timer);
+        
+        const quizContainer = document.getElementById('quizContainer');
+        quizContainer.innerHTML = initialQuizHTML;
+        
+        document.getElementById('welcomeScreen').style.display = 'none';
+        quizContainer.style.display = 'block';
+        
+        loadR20Question(branch, year, semester, subject, unit);
+    });
+}
+
+function startR23Quiz(branch, year, semester, subject, unit) {
+    showLoadingScreen().then(() => {
+        currentQuestion = 0;
+        score = 0;
+        timeLeft = 30;
+        clearInterval(timer);
+        
+        const quizContainer = document.getElementById('quizContainer');
+        quizContainer.innerHTML = initialQuizHTML;
+        
+        document.getElementById('welcomeScreen').style.display = 'none';
+        quizContainer.style.display = 'block';
+        
+        loadR23Question(branch, year, semester, subject, unit);
+    });
+}
+
+// Add retry functions
+function retryR20Quiz(branch, year, semester, subject, unit) {
+    currentQuestion = 0;
+    score = 0;
+    startR20Quiz(branch, year, semester, subject, unit);
+}
+
+function retryR23Quiz(branch, year, semester, subject, unit) {
+    currentQuestion = 0;
+    score = 0;
+    startR23Quiz(branch, year, semester, subject, unit);
 }
 
 function checkR20Answer(selectedIndex, branch, year, semester, subject, unit) {
     const questions = r20Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
-    const questionData = shuffleOptions(questions[currentQuestion]);
+    const questionData = questions[currentQuestion];
     const correct = questionData.correct;
     
     const buttons = document.querySelectorAll('.option-btn');
@@ -1242,7 +1295,7 @@ function checkR20Answer(selectedIndex, branch, year, semester, subject, unit) {
 
 function checkR23Answer(selectedIndex, branch, year, semester, subject, unit) {
     const questions = r23Questions[branch][`year${year}`][`sem${semester}`][`subject${subject}`][`unit${unit}`];
-    const questionData = shuffleOptions(questions[currentQuestion]);
+    const questionData = questions[currentQuestion];
     const correct = questionData.correct;
     
     const buttons = document.querySelectorAll('.option-btn');
@@ -1261,17 +1314,6 @@ function checkR23Answer(selectedIndex, branch, year, semester, subject, unit) {
     }
     
     setTimeout(() => handleNextR23Question(branch, year, semester, subject, unit), 1500);
-}
-
-
-function handleNextR20Question(branch, year, semester, subject, unit) {
-    currentQuestion++;
-    loadR20Question(branch, year, semester, subject, unit);
-}
-
-function handleNextR23Question(branch, year, semester, subject, unit) {
-    currentQuestion++;
-    loadR23Question(branch, year, semester, subject, unit);
 }
 
 function showR20Result(branch, year, semester, subject, unit) {
@@ -1354,7 +1396,6 @@ function showR23Result(branch, year, semester, subject, unit) {
     `;
 }
 
-
 function getPerformanceAnalysis(score, total) {
     const percentage = (score / total) * 100;
     let analysis = [];
@@ -1381,30 +1422,6 @@ function getPerformanceAnalysis(score, total) {
     }
 
     return analysis.map(item => `<li>${item}</li>`).join('');
-}
-
-function retryR20Quiz(branch, year, semester, subject, unit) {
-    currentQuestion = 0;
-    score = 0;
-    timeLeft = 30;
-    clearInterval(timer);
-    
-    const quizContainer = document.getElementById('quizContainer');
-    quizContainer.innerHTML = initialQuizHTML;
-    
-    loadR20Question(branch, year, semester, subject, unit);
-}
-
-function retryR20Quiz(branch, year, semester, subject, unit) {
-    currentQuestion = 0;
-    score = 0;
-    timeLeft = 30;
-    clearInterval(timer);
-    
-    const quizContainer = document.getElementById('quizContainer');
-    quizContainer.innerHTML = initialQuizHTML;
-    
-    loadR23Question(branch, year, semester, subject, unit);
 }
 
 function exitR20() {
