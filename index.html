@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Quest - Interactive Quiz App</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="aptitude.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -36,7 +37,7 @@
                     </div>
                 </button>
                 
-                <button onclick="startQuiz('aptitude')" class="category-btn">
+                <button onclick="showAptitudeCategories()" class="category-btn">
                     <div class="btn-content">
                         <span class="icon">🧮</span>
                         <span class="title">Aptitude</span>
@@ -109,7 +110,9 @@
         </div>
     </div>
 
+    <script src="aptitude.js"></script>
     <script src="questions.js"></script>
     <script src="script.js"></script>
+    
 </body>
 </html>
