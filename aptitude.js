@@ -1,560 +1,508 @@
 // Global variables for quiz state
 let currentQuestions = [];
 let currentQuestionIndex = 0;
-// let score = 0;
+score = 0;
 let currentType = '';
 let currentMethodId = '';
 
-// Aptitude categories and their subcategories
-const aptitudeStructure = {
-    basic: {
-        addition: {
-            title: "Addition",
-            methods: [
-                {
-                    id: "single_digit",
-                    title: "Single Digit Addition",
-                    description: "Practice adding single-digit numbers quickly"
-                },
-                {
-                    id: "double_digit",
-                    title: "Double Digit Addition",
-                    description: "Master adding two-digit numbers"
-                }
-            ]
-        },
-        subtraction: {
-            title: "Subtraction",
-            methods: [
-                {
-                    id: "basic",
-                    title: "Basic Subtraction",
-                    description: "Learn fundamental subtraction techniques"
-                },
-                {
-                    id: "borrowing",
-                    title: "Borrowing Method",
-                    description: "Practice subtraction with borrowing"
-                }
-            ]
-        },
-        multiplication: {
-            title: "Multiplication",
-            methods: [
-                {
-                    id: "method1",
-                    title: "Standard Multiplication",
-                    description: "Practice traditional multiplication method"
-                },
-                {
-                    id: "method2",
-                    title: "Distributive Method",
-                    description: "Learn to break down numbers for easier multiplication"
-                }
-            ]
-        },
-        division: {
-            title: "Division",
-            methods: [
-                {
-                    id: "method1",
-                    title: "Long Division",
-                    description: "Master the traditional long division method"
-                },
-                {
-                    id: "method2",
-                    title: "Short Division",
-                    description: "Quick division method for simple problems"
-                }
-            ]
+function toggleAccordion(header) {
+    // Get the content element
+    const content = header.nextElementSibling;
+    
+    // Close all other accordion items
+    const allContents = document.querySelectorAll('.accordion-content');
+    allContents.forEach(item => {
+        if (item !== content && item.classList.contains('active')) {
+            item.classList.remove('active');
         }
-    }
-};
-
-// Function to start aptitude quiz
-function startAptitudeQuiz(type, methodId) {
-    currentType = type;
-    currentMethodId = methodId;
+    });
     
-    fetch('aptitude_questions.json')
-        .then(response => response.json())
-        .then(data => {
-            const method = data[type][methodId];
-            currentQuestions = method.questions;
-            currentQuestionIndex = 0;
-            score = 0;
-            showQuestion();
-        });
+    // Toggle the clicked accordion item
+    content.classList.toggle('active');
 }
 
-// Function to show question
-function showQuestion() {
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    const currentQuestion = currentQuestions[currentQuestionIndex];
-    
-    welcomeScreen.innerHTML = `
-        <div class="quiz-container">
-            <div class="quiz-header">
-                <h2>Question ${currentQuestionIndex + 1} of ${currentQuestions.length}</h2>
-                <div class="score">Score: ${score}</div>
-            </div>
+//! 1st step show aptitude categories
+
+function startAptitudeCategories(){
+        console.log( "aptitude starting screen" );
+        
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        welcomeScreen.innerHTML = `
+        <div class="aptitude-container" id="aptitudeContainer"">
+            <h1 class="title">Aptitude Training</h1>
             
-            <div class="question-container">
-                <div class="question">${currentQuestion.question}</div>
-                <div class="options">
-                    ${currentQuestion.options.map((option, index) => `
-                        <button onclick="checkAnswer(${option})" class="option-btn">
-                            ${option}
-                        </button>
-                    `).join('')}
-                </div>
-            </div>
-        </div>
-    `;
-}
+            <div class="accordion">
+                <!-- Addition Section -->
 
-// Function to check answer
-function checkAnswer(selectedAnswer) {
-    const currentQuestion = currentQuestions[currentQuestionIndex];
-    const isCorrect = selectedAnswer === currentQuestion.correct;
-    
-    if (isCorrect) {
-        score++;
-    }
+                <div class="accordion-item">
 
-    // Show explanation
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    welcomeScreen.innerHTML = `
-        <div class="quiz-container">
-            <div class="quiz-header">
-                <h2>Question ${currentQuestionIndex + 1} of ${currentQuestions.length}</h2>
-                <div class="score">Score: ${score}</div>
-            </div>
-            
-            <div class="explanation-container">
-                <div class="result ${isCorrect ? 'correct' : 'incorrect'}">
-                    ${isCorrect ? 'Correct!' : 'Incorrect!'}
-                </div>
-                <div class="question">${currentQuestion.question}</div>
-                <div class="answer">Correct Answer: ${currentQuestion.correct}</div>
-                <div class="explanation">${currentQuestion.explanation}</div>
-                
-                <button onclick="${
-                    currentQuestionIndex < currentQuestions.length - 1 
-                    ? 'showNextQuestion()' 
-                    : 'showQuizResult()'
-                }" class="next-btn">
-                    ${currentQuestionIndex < currentQuestions.length - 1 ? 'Next Question' : 'See Results'}
-                </button>
-            </div>
-        </div>
-    `;
-}
-
-// Function to show next question
-function showNextQuestion() {
-    currentQuestionIndex++;
-    showQuestion();
-}
-
-// Function to show quiz result
-function showQuizResult() {
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    const percentage = (score / currentQuestions.length) * 100;
-    
-    welcomeScreen.innerHTML = `
-        <div class="quiz-container">
-            <div class="result-container">
-                <h2>Quiz Complete!</h2>
-                <div class="final-score">
-                    <div class="score-text">Your Score: ${score}/${currentQuestions.length}</div>
-                    <div class="percentage">${percentage}%</div>
-                </div>
-                <div class="result-message">
-                    ${percentage >= 80 ? 'Excellent work!' : 
-                      percentage >= 60 ? 'Good job!' : 
-                      'Keep practicing!'}
-                </div>
-                <div class="action-buttons">
-                    <button onclick="showAptitudeCategories()" class="back-btn">
-                        Back to Categories
-                    </button>
-                    <button onclick="startAptitudeQuiz('${currentType}', '${currentMethodId}')" class="retry-btn">
-                        Try Again
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// Function to show aptitude categories
-function showAptitudeCategories() {
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    
-    welcomeScreen.innerHTML = `
-        <div class="aptitude-container">
-            <h1>Choose a Category</h1>
-            <div class="category-grid">
-                <div class="category-card" onclick="showMethods('multiplication')">
-                    <h2>Multiplication</h2>
-                    <p>Learn different multiplication methods</p>
-                </div>
-                <div class="category-card" onclick="showMethods('division')">
-                    <h2>Division</h2>
-                    <p>Learn different division methods</p>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// Function to show methods for a category
-function showMethods(category) {
-    const methods = aptitudeStructure.basic[category].methods;
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    
-    welcomeScreen.innerHTML = `
-        <div class="aptitude-container">
-            <h1>${category.charAt(0).toUpperCase() + category.slice(1)} Methods</h1>
-            <div class="methods-list">
-                ${methods.map(method => `
-                    <div class="method-item">
-                        <h3>${method.title}</h3>
-                        <p>${method.description}</p>
-                        <div class="method-buttons">
-                            <button onclick="showLearningContent('${category}', '${method.id}')" class="learn-btn">
-                                Learn This Method
-                            </button>
-                            <button onclick="startAptitudeQuiz('${category}', '${method.id}')" class="practice-btn">
-                                Practice Questions
-                            </button>
-                        </div>
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="topic-icon">➕</span>
+                        Addition
                     </div>
-                `).join('')}
-            </div>
-            <button onclick="showAptitudeCategories()" class="back-btn">
-                Back to Categories
-            </button>
-        </div>
-    `;
-}
 
-// Function to show learning content
-function showLearningContent(type, methodId) {
-    const method = aptitudeStructure.basic[type].methods.find(method => method.id === methodId);
-    const content = method.learningContent;
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    
-    welcomeScreen.innerHTML = `
-        <div class="aptitude-container learning-mode">
-            <h1 class="title">${method.title}</h1>
-            <div class="learning-content">
-                <div class="introduction">
-                    <p>${content.introduction}</p>
-                </div>
-                
-                <div class="steps-section">
-                    <h2>Steps to Follow:</h2>
-                    <div class="steps-list">
-                        ${content.steps.map((step, index) => `
-                            <div class="step-item">
-                                <span class="step-number">${index + 1}</span>
-                                <span class="step-text">${step}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                
-                <div class="examples-section">
-                    <h2>Example:</h2>
-                    ${content.examples.map(example => `
-                        <div class="example-card">
-                            <div class="example-question">
-                                <h3>Question: ${example.question}</h3>
-                            </div>
-                            <div class="example-steps">
-                                ${example.explanation.map((step, index) => `
-                                    <div class="example-step">
-                                        <span class="step-number">${index + 1}</span>
-                                        <span class="step-text">${step}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-
-                <div class="practice-preview">
-                    <h2>Practice Questions Preview:</h2>
-                    <div class="preview-list">
-                        ${method.questions.map((q, index) => `
-                            <div class="preview-item">
-                                <span class="question-number">${index + 1}</span>
-                                <span class="question-text">${q.question}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                
-                <div class="action-buttons">
-                    <button onclick="startAptitudeQuiz('${type}', '${methodId}')" class="practice-btn">
-                        Start Practice Questions
-                    </button>
-                    <button onclick="showMethods('${type}')" class="back-btn">
-                        Back to Methods
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// Function to show aptitude category selection
-function showAptitudeCategories() {
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    welcomeScreen.innerHTML = `
-        <div class="aptitude-container">
-            <h1 class="title">Aptitude Practice</h1>
-            <div class="aptitude-categories">
-                ${Object.entries(aptitudeStructure.basic).map(([key, category]) => `
-                    <div class="category-card">
-                        <h2>${category.title}</h2>
-                        <div class="methods-grid">
-                            ${category.methods.map(method => `
-                                <div class="method-card" onclick="showLearningContent('${key}', '${method.id}')">
-                                    <h3>${method.title}</h3>
-                                    <p>${method.description}</p>
+                    <div class="accordion-content">
+                        <div class="method-section">
+                            <div class="digit-quiz-grid" >
+                                <div class="digit-quiz-card" onclick="startDigitQuiz('addition', 1)">
+                                    <span class="digit-icon">1️⃣</span>
+                                    <h5>Single Digit</h5>
+                                    <p>Practice adding one-digit numbers</p>
                                 </div>
-                            `).join('')}
+                                <div class="digit-quiz-card" onclick="startDigitQuiz('addition', 2)">
+                                    <span class="digit-icon">2️⃣</span>
+                                    <h5>Two Digits</h5>
+                                    <p>Practice adding two-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" onclick="startDigitQuiz('addition', 3)">
+                                    <span class="digit-icon">3️⃣</span>
+                                    <h5>Three Digits</h5>
+                                    <p>Practice adding three-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" onclick="startDigitQuiz('addition', 4)">
+                                    <span class="digit-icon">4️⃣</span>
+                                    <h5>Four Digits</h5>
+                                    <p>Practice adding four-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" onclick="startDigitQuiz('addition', 5)">
+                                    <span class="digit-icon">5️⃣</span>
+                                    <h5>Five Digits</h5>
+                                    <p>Practice adding five-digit numbers</p>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
-                `).join('')}
+
+                </div>
+                
+                <!-- Subtraction Section -->
+
+                <div class="accordion-item">
+
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="topic-icon">➖</span>
+                        Subtraction
+                    </div>
+
+                    <div class="accordion-content">
+                        <div class="method-section">
+                            <div class="digit-quiz-grid" >
+                                <div class="digit-quiz-card" onclick="startDigitQuiz('subtraction', 1)">
+                                    <span class="digit-icon">1️⃣</span>
+                                    <h5>Single Digit</h5>
+                                    <p>Practice subtracting one-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" onclick="startDigitQuiz('subtraction', 2)">
+                                    <span class="digit-icon">2️⃣</span>
+                                    <h5>Two Digits</h5>
+                                    <p>Practice subtracting two-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" onclick="startDigitQuiz('subtraction', 3)">
+                                    <span class="digit-icon">3️⃣</span>
+                                    <h5>Three Digits</h5>
+                                    <p>Practice subtracting three-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" onclick="startDigitQuiz('subtraction', 4)">
+                                    <span class="digit-icon">4️⃣</span>
+                                    <h5>Four Digits</h5>
+                                    <p>Practice subtracting four-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" onclick="startDigitQuiz('subtraction', 5)">
+                                    <span class="digit-icon">5️⃣</span>
+                                    <h5>Five Digits</h5>
+                                    <p>Practice subtracting five-digit numbers</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Multiplication Section -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="topic-icon">✖️</span>
+                        Multiplication
+                    </div>
+                    <div class="accordion-content">
+                        <div class="method-section">
+                            <h3 class="method-title">Standard Multiplication Method</h3>
+                            <p class="method-description">Learn the traditional method of multiplication</p>
+                            
+                            <div class="steps-container">
+                                <div class="step-card">Align numbers vertically</div>
+                                <div class="step-card">Multiply each digit from right to left</div>
+                                <div class="step-card">Add the products</div>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button class="learn-button" onclick="learnMethod('multiplication')">Learn This Method</button>
+                                <button class="practice-button" onclick="practiceMethod('multiplication')">Practice Questions</button>
+                                <button class="solutions-button" onclick="showSolutions('multiplication')">Quiz Solutions</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Division Section -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="topic-icon">➗</span>
+                        Division
+                    </div>
+                    <div class="accordion-content">
+                        <div class="method-section">
+                            <h3 class="method-title">Long Division Method</h3>
+                            <p class="method-description">Master the technique of long division</p>
+                            
+                            <div class="steps-container">
+                                <div class="step-card">Set up the division bracket</div>
+                                <div class="step-card">Divide, Multiply, Subtract, Bring down</div>
+                                <div class="step-card">Repeat until complete</div>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button class="learn-button" onclick="learnMethod('division')">Learn This Method</button>
+                                <button class="practice-button" onclick="practiceMethod('division')">Practice Questions</button>
+                                <button class="solutions-button" onclick="showSolutions('division')">Quiz Solutions</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Percentage Section -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="topic-icon">💯</span>
+                        Percentage
+                    </div>
+                    <div class="accordion-content">
+                        <div class="method-section">
+                            <h3 class="method-title">Percentage Calculations</h3>
+                            <p class="method-description">Learn to solve percentage problems efficiently</p>
+                            
+                            <div class="steps-container">
+                                <div class="step-card">Convert percentage to decimal</div>
+                                <div class="step-card">Apply percentage formula</div>
+                                <div class="step-card">Calculate final answer</div>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button class="learn-button" onclick="learnMethod('percentage')">Learn This Method</button>
+                                <button class="practice-button" onclick="practiceMethod('percentage')">Practice Questions</button>
+                                <button class="solutions-button" onclick="showSolutions('percentage')">Quiz Solutions</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time and Distance Section -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="topic-icon">⏱️</span>
+                        Time and Distance
+                    </div>
+                    <div class="accordion-content">
+                        <div class="method-section">
+                            <h3 class="method-title">Speed, Time & Distance</h3>
+                            <p class="method-description">Master the concepts of time and distance problems</p>
+                            
+                            <div class="steps-container">
+                                <div class="step-card">Identify given values</div>
+                                <div class="step-card">Apply relevant formula</div>
+                                <div class="step-card">Solve for required variable</div>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button class="learn-button" onclick="learnMethod('timeAndDistance')">Learn This Method</button>
+                                <button class="practice-button" onclick="practiceMethod('timeAndDistance')">Practice Questions</button>
+                                <button class="solutions-button" onclick="showSolutions('timeAndDistance')">Quiz Solutions</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button onclick="location.reload()" class="back-btn">Back to Main Menu</button>
+
+        <button onclick="exitR20()" class="exit-btn">
+            <span class="btn-text">Back to Main Menu</span>
+            <span class="btn-icon">↩</span>
+        </button>
         </div>
-    `;
+        `;
 }
 
-// Function to generate random numbers based on digits
+
 function generateNumber(digits) {
     const min = Math.pow(10, digits - 1);
     const max = Math.pow(10, digits) - 1;
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Function to generate addition questions
-function generateAdditionQuestion(digits) {
+
+function generateProblem(operation,digits) {
     const num1 = generateNumber(digits);
     const num2 = generateNumber(digits);
-    const correct = num1 + num2;
+    let answerIndex = -1;
+    let correctAnswer=0;
+    if(operation == "addition"){
+         correctAnswer = num1 + num2;
+    }
+    else if(operation == "subtraction"){
+         correctAnswer = num1 - num2;
+    }
     
-    // Generate wrong options
-    const options = [correct];
-    while (options.length < 4) {
-        const wrongAnswer = correct + Math.floor(Math.random() * 10) - 5;
-        if (!options.includes(wrongAnswer)) {
-            options.push(wrongAnswer);
+    // Generate 3 wrong options
+    const wrongOptions = [];
+    while (wrongOptions.length < 3) {
+        const wrong = correctAnswer + Math.floor(Math.random() * 10) - 5;
+        if (wrong !== correctAnswer && !wrongOptions.includes(wrong)) {
+            wrongOptions.push(wrong);
         }
     }
     
-    return {
-        question: `${num1} + ${num2} = ?`,
-        options: shuffleArray(options),
-        correct: options.indexOf(correct),
-        explanation: `${num1} + ${num2} = ${correct}`
-    };
-}
-
-// Function to generate subtraction questions
-function generateSubtractionQuestion(digits) {
-    let num1 = generateNumber(digits);
-    let num2 = generateNumber(digits);
-    
-    // Ensure num1 is greater than num2
-    if (num2 > num1) {
-        [num1, num2] = [num2, num1];
-    }
-    
-    const correct = num1 - num2;
-    
-    // Generate wrong options
-    const options = [correct];
-    while (options.length < 4) {
-        const wrongAnswer = correct + Math.floor(Math.random() * 10) - 5;
-        if (!options.includes(wrongAnswer)) {
-            options.push(wrongAnswer);
-        }
-    }
-    
-    return {
-        question: `${num1} - ${num2} = ?`,
-        options: shuffleArray(options),
-        correct: options.indexOf(correct),
-        explanation: `${num1} - ${num2} = ${correct}`
-    };
-}
-
-// Function to generate multiplication questions
-function generateMultiplicationQuestion(method) {
-    let num1, num2, correct;
-    
-    switch (method) {
-        case 'method1':
-            num1 = generateNumber(2);
-            num2 = generateNumber(2);
-            break;
-        case 'method2':
-            num1 = generateNumber(2);
-            num2 = generateNumber(1);
-            break;
-        case 'method3':
-            num1 = generateNumber(2);
-            num2 = generateNumber(2);
-            break;
-    }
-    
-    correct = num1 * num2;
-    
-    // Generate wrong options
-    const options = [correct];
-    while (options.length < 4) {
-        const wrongAnswer = correct + Math.floor(Math.random() * 20) - 10;
-        if (!options.includes(wrongAnswer)) {
-            options.push(wrongAnswer);
-        }
-    }
-    
-    return {
-        question: `${num1} × ${num2} = ?`,
-        options: shuffleArray(options),
-        correct: options.indexOf(correct),
-        explanation: `${num1} × ${num2} = ${correct}`
-    };
-}
-
-// Function to generate division questions
-function generateDivisionQuestion(method) {
-    let divisor, dividend, quotient;
-    
-    if (method === 'method1') {
-        divisor = Math.floor(Math.random() * 9) + 2; // 2-10
-        quotient = Math.floor(Math.random() * 90) + 10; // 10-99
-        dividend = divisor * quotient;
-    } else {
-        divisor = Math.floor(Math.random() * 9) + 2; // 2-10
-        quotient = Math.floor(Math.random() * 9) + 1; // 1-9
-        dividend = divisor * quotient;
-    }
-    
-    const correct = quotient;
-    
-    // Generate wrong options
-    const options = [correct];
-    while (options.length < 4) {
-        const wrongAnswer = correct + Math.floor(Math.random() * 6) - 3;
-        if (!options.includes(wrongAnswer) && wrongAnswer > 0) {
-            options.push(wrongAnswer);
-        }
-    }
-    
-    return {
-        question: `${dividend} ÷ ${divisor} = ?`,
-        options: shuffleArray(options),
-        correct: options.indexOf(correct),
-        explanation: `${dividend} ÷ ${divisor} = ${correct}`
-    };
-}
-
-// Function to generate a set of questions
-function generateQuestionSet(type, subtype, level = null) {
-    const questions = [];
-    for (let i = 0; i < 25; i++) {
-        let question;
-        switch (type) {
-            case 'addition':
-                question = generateAdditionQuestion(parseInt(level));
-                break;
-            case 'subtraction':
-                question = generateSubtractionQuestion(parseInt(level));
-                break;
-            case 'multiplication':
-                question = generateMultiplicationQuestion(subtype);
-                break;
-            case 'division':
-                question = generateDivisionQuestion(subtype);
-                break;
-        }
-        questions.push(question);
-    }
-    return questions;
-}
-
-// Utility function to shuffle array
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
+    // Combine and shuffle options
+    const options = [...wrongOptions, correctAnswer];
+    for (let i = options.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-// Function to shuffle question options while maintaining the correct answer
-function shuffleOptions(question) {
-    if (!question || !question.options) {
-        return question;
+        [options[i], options[j]] = [options[j], options[i]];
     }
 
-    // Create a copy of the original question
-    const shuffledQuestion = {
-        ...question,
-        options: [...question.options],
-        correct: question.correct
+    for(let i = 0 ;i < 4 ;i++){
+        if(options[i] === correctAnswer)
+            answerIndex = i;
+    }
+
+    const question = `What is ${num1} ${operation == "addition" ? "+" : "-"} ${num2} ?`;
+    return {
+        num1,
+        num2,
+        answer: correctAnswer,
+        options,
+        question : question,
+        answerIndex : answerIndex
     };
-
-    // Store original options and correct answer
-    const correctAnswer = shuffledQuestion.options[shuffledQuestion.correct];
-
-    // Shuffle the options array
-    for (let i = shuffledQuestion.options.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledQuestion.options[i], shuffledQuestion.options[j]] = 
-        [shuffledQuestion.options[j], shuffledQuestion.options[i]];
-    }
-
-    // Update the correct answer index
-    shuffledQuestion.correct = shuffledQuestion.options.indexOf(correctAnswer);
-
-    return shuffledQuestion;
 }
 
-// Function to toggle accordion
-function toggleAccordion(header) {
-    const content = header.nextElementSibling;
-    const icon = header.querySelector('.accordion-icon');
-    const allContents = document.querySelectorAll('.accordion-content');
-    const allIcons = document.querySelectorAll('.accordion-icon');
+//!  2nd step in aptitude for addition and subtraction
+
+
+function startDigitQuiz(operation, digits) {
+
+  // Reset quiz state
+  currentQuestion = 0;
+  aptitudeTotalQuestions = 20;
+  score = 0;
+  timeLeft = 30;
+  clearInterval(timer);
     
-    // Close all other accordions
-    allContents.forEach(item => {
-        if (item !== content) {
-            item.style.maxHeight = null;
-        }
-    });
+    // generate problem 
+    questionData = generateProblem(operation,digits)
+
+    // Reset quiz container to initial state
+    const quizContainer = document.getElementById('quizContainer');
+    quizContainer.innerHTML = initialQuizHTML;
     
-    allIcons.forEach(item => {
-        if (item !== icon) {
-            item.textContent = '+';
-        }
-    });
+    // Show quiz container and hide welcome screen
+    document.getElementById('welcomeScreen').style.display = 'none';
+    quizContainer.style.display = 'block';
+        
+        timer = setInterval(() => {
+            timeLeft--;
+            updateTimer();
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                handleNextQuestionAptitude(operation,digits);
+            }
+        }, 1000);
     
-    // Toggle current accordion
-    if (content.style.maxHeight) {
-        content.style.maxHeight = null;
-        icon.textContent = '+';
+
+        document.getElementById('question').textContent = questionData.question;
+
+        const optionsContainer = document.getElementById('options');
+        optionsContainer.innerHTML = '';
+        
+        const optionLetters = ['A', 'B', 'C', 'D'];
+        questionData.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-btn';
+            button.innerHTML = `
+                <span class="option-label">${optionLetters[index]}</span>
+                <span class="option-text">${option}</span>
+            `;
+            button.onclick = () => checkAnswerAptitude(index, questionData,operation,digits);
+            optionsContainer.appendChild(button);
+        });
+    
+        document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1}/${aptitudeTotalQuestions}`;
+}
+
+// handle the option is correct or wrong
+
+function checkAnswerAptitude(selectedIndex,questionData,operation,digits) {
+    
+    const correct = questionData.answerIndex;
+    
+    const buttons = document.querySelectorAll('.option-btn');
+    buttons.forEach(button => button.disabled = true);
+    
+    if (selectedIndex === correct) {
+        score++;
+        buttons[selectedIndex].classList.add('correct');
+        showPopAnimation('Correct!', '#4CAF50');
     } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-        icon.textContent = '-';
+        buttons[selectedIndex].classList.add('wrong');
+        buttons[correct].classList.add('correct');
+        showPopAnimation('Wrong!', '#f44336');
+    }
+    
+    setTimeout(() => handleNextQuestionAptitude(operation,digits), 1000);
+}
+
+function handleNextQuestionAptitude(operation,digits) {
+    currentQuestion++;    
+    if (currentQuestion < aptitudeTotalQuestions) {
+        loadQuestionAptitude(operation,digits);
+    } else {
+        showAptitudeResult(operation,digits);
     }
 }
 
+function loadQuestionAptitude(operation,digits) {
+    clearInterval(timer);
+    timeLeft = 30;
+    updateTimer();
+    
+    timer = setInterval(() => {
+        timeLeft--;
+        updateTimer();
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            handleNextQuestionAptitude(operation,digits);
+        }
+    }, 1000);
+
+    questionData = generateProblem(operation,digits)
+
+    document.getElementById('question').textContent = questionData.question;
+    const optionsContainer = document.getElementById('options');
+    optionsContainer.innerHTML = '';
+    
+    const optionLetters = ['A', 'B', 'C', 'D'];
+    questionData.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'option-btn';
+        button.innerHTML = `
+            <span class="option-label">${optionLetters[index]}</span>
+            <span class="option-text">${option}</span>
+        `;
+        button.onclick = () => checkAnswerAptitude(index, questionData,operation,digits);
+        optionsContainer.appendChild(button);
+    });
+
+    document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1}/${aptitudeTotalQuestions}`;
+    document.getElementById('question-score').textContent = `Score : ${score}`;
+   
+}
+
+function showAptitudeResult(operation,digits) {
+    clearInterval(timer);
+    
+    const accuracy = Math.round((score / aptitudeTotalQuestions) * 100);
+    const tips = getImprovementTips(score, aptitudeTotalQuestions);
+    
+    const quizContainer = document.getElementById('quizContainer');
+    quizContainer.innerHTML = `
+        <div class="result-screen">
+            <h2>Quiz Completed! 🎉</h2>
+            
+            <div class="accuracy-meter">
+                <div class="accuracy-value">${accuracy}%</div>
+            </div>
+            
+            <div class="score-summary">
+                <h3>Score Summary</h3>
+                <p>Correct Answers: ${score} out of ${aptitudeTotalQuestions}</p>
+                <p>Time Taken: ${30 - timeLeft} seconds</p>
+            </div>
+            
+            <div class="improvement-tips">
+                <h3>Improvement Tips</h3>
+                ${tips.map(tip => `<div class="tip-item">${tip}</div>`).join('')}
+            </div>
+            
+            <div class="result-actions">
+                <button onclick="startDigitQuiz('${operation}',${digits})" class="retry-btn">
+                    <span class="btn-text">Retry Quiz</span>
+                    <span class="btn-icon">🔄</span>
+                </button>
+                <button onclick="exitQuiz()" class="exit-btn">
+                    <span class="btn-text">Back to Categories</span>
+                    <span class="btn-icon">↩</span>
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+
+//! end of the quiz for addition and subtraction
+
+
+
+
+function showAptitudeCategories() {
+    document.getElementById('welcomeScreen').style.display = 'none';
+    document.getElementById('quizContainer').style.display = 'none';
+    document.getElementById('aptitudeContainer').style.display = 'block';
+}
+
+function learnMethod(method) {
+    // Handle the learn button click for different methods
+    switch(method) {
+        case 'addition':
+            console.log('Learning addition method');
+            break;
+        case 'subtraction':
+            console.log('Learning subtraction method');
+            break;
+        case 'multiplication':
+            console.log('Learning multiplication method');
+            break;
+        case 'division':
+            console.log('Learning division method');
+            break;
+        case 'percentage':
+            console.log('Learning percentage calculations');
+            break;
+        case 'timeAndDistance':
+            console.log('Learning time and distance concepts');
+            break;
+    }
+}
+
+function practiceMethod(method) {
+    // Handle the practice button click for different methods
+    switch(method) {
+        case 'addition':
+            console.log('Practice addition');
+            break;
+        case 'subtraction':
+            console.log('Practice subtraction');
+            break;
+        case 'multiplication':
+            console.log('Practice multiplication');
+            break;
+        case 'division':
+            console.log('Practice division');
+            break;
+        case 'percentage':
+            console.log('Practice percentage problems');
+            break;
+        case 'timeAndDistance':
+            console.log('Practice time and distance problems');
+            break;
+    }
+}
