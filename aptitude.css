@@ -781,7 +781,7 @@
 
 /* Multiplication Section Styles */
 .method-section {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.292);
     border-radius: 15px;
     padding: 30px;
     margin: 20px 0;
@@ -893,10 +893,42 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .level-grid {
-        grid-template-columns: 1fr;
+
+    .container{
+        padding: 10px;
+    }
+    .welcome-screen.active{
+        padding: 0px;
+    }
+    .aptitude-container{
+       padding: 5px;
+    }
+    .method-section{
+        padding: 2px;
+        background-color: #06070601;
+    }
+    .digit-quiz-grid {
+        padding: 2px;
+        font-size: 15px;
+        grid-template-columns : repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .digit-quiz-card{
+        padding: 2px;
     }
     
+    /* end of grid in method selection  */
+    .quiz-container{
+        font-size: 15px;
+        padding: 5px;
+    }
+    .question-area{
+        padding: 10px;
+    }
+    /* start of the quiz  */
+
+
+    /* end of the quiz */
     .quiz-controls {
         flex-direction: column;
     }

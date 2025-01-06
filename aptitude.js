@@ -130,13 +130,6 @@ function startAptitudeCategories(){
                     <div class="accordion-content">
                         <div class="method-section">
                             <h3 class="method-title">Standard Multiplication Method</h3>
-                            <p class="method-description">Learn the traditional method of multiplication</p>
-                            
-                            <div class="steps-container">
-                                <div class="step-card">Align numbers vertically</div>
-                                <div class="step-card">Multiply each digit from right to left</div>
-                                <div class="step-card">Add the products</div>
-                            </div>
                             
                             <div class="button-group">
                                 <button class="learn-button" onclick="learnMethod('multiplication')">Learn This Method</button>
