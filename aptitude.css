@@ -891,6 +891,112 @@
     height:max-content;
 }
 
+/* multiplication code start  */
+
+.multi-method-container {
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: black;
+    color: #ddd;
+}
+.multi-top-buttons{
+    display: flex;
+    padding: 0 20px 0 20px;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.multi-tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+.multi-top-button{
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: all linear 0.3s;
+}
+.multi-tab-button{
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.multi-top-button:hover{
+    transform: scale(1.1);
+}
+
+.multi-learn-button {
+    background-color: #f84504d8;
+    color: white;
+    padding: 0px 15rem;
+    font-size: 1rem;
+}
+.multi-learn-button:hover{
+    background-color: #fb4605;
+    color: white;
+}
+.multi-practice-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 15rem;
+    font-size: 1rem;
+
+}
+.multi-back-button {
+    background-color: #1d1c1cd6;
+    color: white;
+}
+
+.multi-learn-content, .multi-practice-content {
+    display: none;
+}
+.multi-learn-content.active, .multi-practice-content.active {
+    display: block;
+}
+
+/* this is for quiz methods */
+.multi-quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    background-color: #fb47056b;
+    padding: 20px;
+}
+.multi-quiz-item {
+    border: 1px solid #000;
+    padding: 15px;
+    background-color: rgba(0, 255, 255, 0.599);
+    text-align: center;
+    cursor: pointer;
+}
+/* end of quiz methods */
+
+.multi-calculation-container {
+    max-width: 600px;
+    margin: 0px auto;
+    padding: 20px;
+    border: 3px solid #ddddddae;
+    border-radius: 10px;
+}
+.multi-calculation-container:hover{
+    border-color: #ddd;
+    box-shadow: 1px px 2px 2px;
+}
+.multi-calculation-steps {
+    text-align: left;
+}
+
+/* multiplication code end  */
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
 
