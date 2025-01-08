@@ -9,22 +9,20 @@ function speakWord(word) {
 }
 
 // Load words from JSON
-async function loadEnglishWords() {
-    try {
-        const response = await fetch('english-words.json');
-        const data = await response.json();
-        englishWords = data.verbs;
-        displayWords();
-    } catch (error) {
-        console.error('Error loading words:', error);
-    }
-}
+fetch('english-words.json')
+    .then(response => response.json())
+    .then(data => {
+        window.englishWords = data.verbs;
+        displayWords(data.verbs);
+    })
+    .catch(error => console.error('Error loading words:', error));
 
-function displayWords() {
+// Function to display words in the table
+function displayWords(words) {
     const tableBody = document.getElementById('englishWordsBody');
     tableBody.innerHTML = '';
-    
-    englishWords.forEach(word => {
+
+    words.forEach(word => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${word.word}</td>
@@ -68,4 +66,6 @@ function startQuiz(type) {
 }
 
 // Load words when page loads
-document.addEventListener('DOMContentLoaded', loadEnglishWords);
+document.addEventListener('DOMContentLoaded', function() {
+    // No need to call loadEnglishWords() as it's already handled by the fetch call
+});

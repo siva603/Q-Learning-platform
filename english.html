@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Learning</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="english-style.css">
-    <link rel="stylesheet" href="words-style.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./english-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -48,7 +47,7 @@
                     </div>
                 </button>
             </div>
-            
+
             <button onclick="window.close()" class="exit-btn">
                 <span class="btn-text">Close</span>
                 <span class="btn-icon">↩</span>
@@ -75,102 +74,125 @@
                 </table>
             </div>
 
-            <div id="englishQuizContent" class="english-quiz-container" style="display: none;">
+            <div class="english-quiz-container">
                 <div class="english-quiz-types">
-                    <div class="english-quiz-box english-quiz-options" onclick="startQuiz('options')">
-                        OPTIONS QUIZ
+                    <div class="english-quiz-box" onclick="startVerbQuiz('options')">
+                        <i class="quiz-icon">📝</i>
+                        <div class="quiz-title">Options Quiz</div>
+                        <div class="quiz-desc">Choose the correct verb form from multiple options</div>
                     </div>
-                    <div class="english-quiz-box english-quiz-typing" onclick="startQuiz('typing')">
-                        TYPING OPTIONS QUIZ
+                    <div class="english-quiz-box" onclick="startVerbQuiz('typing')">
+                        <i class="quiz-icon">⌨️</i>
+                        <div class="quiz-title">Typing Quiz</div>
+                        <div class="quiz-desc">Type the correct verb form</div>
                     </div>
-                    <div class="english-quiz-box english-quiz-voice" onclick="startQuiz('voice')">
-                        VOICE QUIZ
+                    <div class="english-quiz-box" onclick="startVerbQuiz('voice')">
+                        <i class="quiz-icon">🎤</i>
+                        <div class="quiz-title">Voice Quiz</div>
+                        <div class="quiz-desc">Speak the correct verb form</div>
+                    </div>
+                </div>
+
+                <div id="quizContainer" style="display: none;">
+                    <div class="quiz-header">
+                        <div>Question <span id="currentQuestion">1</span>/10</div>
+                        <div>Score: <span id="score">0</span></div>
+                        <div id="timer">Time: 30s</div>
+                    </div>
+
+                    <div class="question-container">
+                        <div id="questionText" class="question-text"></div>
+                        <div id="optionsContainer" class="options-container"></div>
+                        <div id="typingContainer" class="typing-container" style="display: none;">
+                            <input type="text" id="typingAnswer" placeholder="Type your answer here...">
+                        </div>
+                        <div id="voiceContainer" class="voice-container" style="display: none;">
+                            <button class="voice-btn">Click to Speak</button>
+                        </div>
+                        <div class="quiz-controls">
+                            <button id="submitAnswer" class="quiz-btn">Submit Answer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="resultContainer" style="display: none;">
+                    <h2>Quiz Results</h2>
+                    <div class="result-score">Score: <span id="finalScore">0</span>/10</div>
+                    <div id="feedback" class="result-feedback"></div>
+                    <div class="result-buttons">
+                        <button onclick="retryQuiz()" class="quiz-btn">Try Again</button>
+                        <button onclick="exitQuiz()" class="quiz-btn">Exit Quiz</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="quiz-container" id="quizContainer" style="display: none;">
-            <div class="quiz-header">
-                <div id="timer" class="glow">Time Left: 30s</div>
-                <div id="question-counter">Question 1/10</div>
-            </div>
-            <div class="question-area">
-                <h2 id="question">Question goes here</h2>
-                <div id="options" class="options-grid"></div>
-            </div>
-            <button onclick="exitQuiz()" class="exit-btn">
-                <span class="btn-text">Exit Quiz</span>
-                <span class="btn-icon">↩</span>
-            </button>
-        </div>
-    </div>
-
-    <script>
-        function startEnglishSection(section) {
-            switch(section) {
-                case 'words':
-                    document.getElementById('welcomeScreen').style.display = 'none';
-                    document.getElementById('englishSection').style.display = 'block';
-                    // Initialize learn mode by default
-                    switchEnglishMode('learn');
-                    break;
-                case 'parts-of-speech':
-                    alert('Parts of Speech section is coming soon!');
-                    break;
-                case 'tenses':
-                    alert('Tenses section is coming soon!');
-                    break;
+        <script>
+            function startEnglishSection(section) {
+                switch(section) {
+                    case 'words':
+                        document.getElementById('welcomeScreen').style.display = 'none';
+                        document.getElementById('englishSection').style.display = 'block';
+                        // Initialize learn mode by default
+                        switchEnglishMode('learn');
+                        break;
+                    case 'parts-of-speech':
+                        alert('Parts of Speech section is coming soon!');
+                        break;
+                    case 'tenses':
+                        alert('Tenses section is coming soon!');
+                        break;
+                }
             }
-        }
 
-        function exitQuiz() {
-            document.getElementById('quizContainer').style.display = 'none';
-            document.getElementById('welcomeScreen').style.display = 'block';
-        }
-
-        function switchEnglishMode(mode) {
-            // Remove active class from all buttons
-            document.querySelector('.english-learn').classList.remove('active');
-            document.querySelector('.english-practice').classList.remove('active');
-
-            // Hide all content sections
-            document.getElementById('englishLearnContent').style.display = 'none';
-            document.getElementById('englishQuizContent').style.display = 'none';
-
-            // Activate selected mode
-            if (mode === 'learn') {
-                document.querySelector('.english-learn').classList.add('active');
-                document.getElementById('englishLearnContent').style.display = 'block';
-            } else if (mode === 'practice') {
-                document.querySelector('.english-practice').classList.add('active');
-                document.getElementById('englishQuizContent').style.display = 'block';
+            function exitQuiz() {
+                document.getElementById('quizContainer').style.display = 'none';
+                document.getElementById('welcomeScreen').style.display = 'block';
             }
-        }
 
-        function startQuiz(type) {
-            if (type === 'options') {
-                startOptionsQuiz();
-            } else if (type === 'typing') {
-                startTypingQuiz();
-            } else if (type === 'voice') {
-                startVoiceQuiz();
+            function switchEnglishMode(mode) {
+                // Remove active class from all buttons
+                document.querySelector('.english-learn').classList.remove('active');
+                document.querySelector('.english-practice').classList.remove('active');
+
+                // Hide all content sections
+                document.getElementById('englishLearnContent').style.display = 'none';
+                document.getElementById('englishQuizContent').style.display = 'none';
+
+                // Activate selected mode
+                if (mode === 'learn') {
+                    document.querySelector('.english-learn').classList.add('active');
+                    document.getElementById('englishLearnContent').style.display = 'block';
+                } else if (mode === 'practice') {
+                    document.querySelector('.english-practice').classList.add('active');
+                    document.querySelector('.english-quiz-container').style.display = 'block';
+                }
             }
-        }
 
-        function startOptionsQuiz() {
-            alert('Options Quiz is coming soon!');
-        }
+            function startQuiz(type) {
+                if (type === 'options') {
+                    startOptionsQuiz();
+                } else if (type === 'typing') {
+                    startTypingQuiz();
+                } else if (type === 'voice') {
+                    startVoiceQuiz();
+                }
+            }
 
-        function startTypingQuiz() {
-            alert('Typing Quiz is coming soon!');
-        }
+            function startOptionsQuiz() {
+                alert('Options Quiz is coming soon!');
+            }
 
-        function startVoiceQuiz() {
-            alert('Voice Quiz is coming soon!');
-        }
-    </script>
-    <script src="english-script.js"></script>
-    <script src="script.js"></script>
-</body>
+            function startTypingQuiz() {
+                alert('Typing Quiz is coming soon!');
+            }
+
+            function startVoiceQuiz() {
+                alert('Voice Quiz is coming soon!');
+            }
+        </script>
+        <script src="english-script.js"></script>
+        <script src="english-quiz.js"></script>
+        <script src="script.js"></script>
+    </body>
 </html>
