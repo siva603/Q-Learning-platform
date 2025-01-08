@@ -270,6 +270,9 @@ function generateProblem(operation,digits) {
     else if(operation == "subtraction"){
          correctAnswer = num1 - num2;
     }
+    else if(operation == "multiplication"){
+         correctAnswer = num1 * num2;
+    }
     
     // Generate 3 wrong options
     const wrongOptions = [];
@@ -279,7 +282,25 @@ function generateProblem(operation,digits) {
             wrongOptions.push(wrong);
         }
     }
-    
+    var operator ;
+    switch(operation){
+        case "addition" : {
+            operator = "+";
+            break;
+        }
+        case "subtraction" : {
+            operator = "-";
+            break;
+        }
+        case "multiplication" : {
+            operator = "*";
+            break;
+        }
+
+        default : 
+        operator = "+";
+            
+    }
     // Combine and shuffle options
     const options = [...wrongOptions, correctAnswer];
     for (let i = options.length - 1; i > 0; i--) {
@@ -292,7 +313,7 @@ function generateProblem(operation,digits) {
             answerIndex = i;
     }
 
-    const question = `What is ${num1} ${operation == "addition" ? "+" : "-"} ${num2} ?`;
+    const question = `What is ${num1} ${operator} ${num2} ?`;
     return {
         num1,
         num2,
@@ -476,29 +497,7 @@ function showAptitudeResult(operation,digits) {
 //     document.getElementById('aptitudeContainer').style.display = 'block';
 // }
 
-function learnMethod(method) {
-    // Handle the learn button click for different methods
-    switch(method) {
-        case 'addition':
-            console.log('Learning addition method');
-            break;
-        case 'subtraction':
-            console.log('Learning subtraction method');
-            break;
-        case 'multiplication':
-            console.log('Learning multiplication method');
-            break;
-        case 'division':
-            console.log('Learning division method');
-            break;
-        case 'percentage':
-            console.log('Learning percentage calculations');
-            break;
-        case 'timeAndDistance':
-            console.log('Learning time and distance concepts');
-            break;
-    }
-}
+
 
 function practiceMethod(method) {
     // Handle the practice button click for different methods
@@ -526,57 +525,6 @@ function practiceMethod(method) {
 
 //! multiplication code start 
 
-// function normalMultiplication(){
-
-//         const normalMultiplicationDisplay = document.getElementById('welcomeScreen');
-       
-//         normalMultiplicationDisplay.innerHTML = `
-//                         <div class="method-section">
-//                             <div class="digit-quiz-grid" >
-//                                 <div class="digit-quiz-card" onclick="startDigitQuiz('multiplication', 1)">
-//                                     <span class="digit-icon">1️⃣</span>
-//                                     <h5>Single Digit</h5>
-//                                     <p>Practice multiplication one-digit numbers</p>
-//                                 </div>
-//                                 <div class="digit-quiz-card" onclick="startDigitQuiz('multiplication', 2)">
-//                                     <span class="digit-icon">2️⃣</span>
-//                                     <h5>Two Digits</h5>
-//                                     <p>Practice multiplication two-digit numbers</p>
-//                                 </div>
-//                                 <div class="digit-quiz-card" onclick="startDigitQuiz('multiplication', 3)">
-//                                     <span class="digit-icon">3️⃣</span>
-//                                     <h5>Three Digits</h5>
-//                                     <p>Practice multiplication three-digit numbers</p>
-//                                 </div>
-//                                 <div class="digit-quiz-card" onclick="startDigitQuiz('multiplication', 4)">
-//                                     <span class="digit-icon">4️⃣</span>
-//                                     <h5>Four Digits</h5>
-//                                     <p>Practice multiplication four-digit numbers</p>
-//                                 </div>
-//                                 <div class="digit-quiz-card" onclick="startDigitQuiz('multiplication', 5)">
-//                                     <span class="digit-icon">5️⃣</span>
-//                                     <h5>Five Digits</h5>
-//                                     <p>Practice multiplication five-digit numbers</p>
-//                                 </div>
-//                                 <div class="digit-quiz-card" onclick="startDigitQuiz('multiplication', 6)">
-//                                     <span class="digit-icon">6️⃣</span>
-//                                     <h5>Five Digits</h5>
-//                                     <p>Practice multiplication six-digit numbers</p>
-//                                 </div>
-//                                 <div class="digit-quiz-card" onclick="startDigitQuiz('multiplication', 7)">
-//                                     <span class="digit-icon">7️⃣</span>
-//                                     <h5>Five Digits</h5>
-//                                     <p>Practice multiplication seven-digit numbers</p>
-//                                 </div>
-//                             </div>
-
-//                                     <button onclick="startAptitudeCategories()" class="exit-btn">
-//                                         <span class="btn-text">Back to Multiplication</span>
-//                                         <span class="btn-icon">↩</span>
-//                                     </button>
-//                         </div>
-//         `
-// }
 function normalMultiplication(){
 
         const normalMultiplicationDisplay = document.getElementById('welcomeScreen');
@@ -584,17 +532,18 @@ function normalMultiplication(){
         normalMultiplicationDisplay.innerHTML = `
 
     <div class="multi-top-buttons">
-        <button class="multi-top-button multi-back-button" onclick="startAptitudeCategories()">Back</button>
+        <button class="multi-top-button" onclick="startAptitudeCategories()">Back</button>
         <!-- <button class="top-button back-button" onclick="window.history.back()">Start quiz</button> -->
     </div>
 
     <div class="multi-method-container">
         <div class="multi-tab-buttons">
-            <button class="multi-tab-button multi-learn-button" onclick="showSection('learn')">Learn method</button>
-            <button class="multi-tab-button multi-practice-button" onclick="showSection('practice')">Practice</button>
+            <button class=" multi-learn-button" onclick="showSection('learn')">Learn method</button>
+            <button class=" multi-practice-button" onclick="showSection('practice')">Practice</button>
         </div>
 
         <div class="multi-learn-content">
+        
             <h2>Method 1: 3 Digit Multiplication</h2>
             <div class="multi-calculation-container">
                 <h3>How to Calculate</h3>
@@ -629,16 +578,51 @@ function normalMultiplication(){
         </div>
 
         <div class="multi-practice-content">
-            <div class="multi-quiz-grid">
-                <div class="multi-quiz-item" >quiz 1</div>
-                <div class="multi-quiz-item" >quiz 2</div>
-                <div class="multi-quiz-item" >quiz 3</div>
-                <div class="multi-quiz-item" >quiz 4</div>
-            </div>
+<div class="method-section">
+                            <div class="digit-quiz-grid" >
+                                <div class="digit-quiz-card" style="background-color:rgba(255, 255, 255, 0.144)" onclick="startDigitQuiz('multiplication', 1)">
+                                    <span class="digit-icon">1️⃣</span>
+                                    <h5>Single Digit</h5>
+                                    <p>Practice multiplication with one-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" style="background-color:rgba(255, 255, 255, 0.144)"  onclick="startDigitQuiz('multiplication', 2)">
+                                    <span class="digit-icon">2️⃣</span>
+                                    <h5>Two Digits</h5>
+                                    <p>Practice multiplication with two-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" style="background-color:rgba(255, 255, 255, 0.144)"  onclick="startDigitQuiz('multiplication', 3)">
+                                    <span class="digit-icon">3️⃣</span>
+                                    <h5>Three Digits</h5>
+                                    <p>Practice multiplication with three-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" style="background-color:rgba(255, 255, 255, 0.144)"  onclick="startDigitQuiz('multiplication', 4)">
+                                    <span class="digit-icon">4️⃣</span>
+                                    <h5>Four Digits</h5>
+                                    <p>Practice multiplication with four-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" style="background-color:rgba(255, 255, 255, 0.144)"  onclick="startDigitQuiz('multiplication', 5)">
+                                    <span class="digit-icon">5️⃣</span>
+                                    <h5>Five Digits</h5>
+                                    <p>Practice multiplication with five-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" style="background-color:rgba(255, 255, 255, 0.144)"  onclick="startDigitQuiz('multiplication', 6)">
+                                    <span class="digit-icon">6️⃣</span>
+                                    <h5>six Digits</h5>
+                                    <p>Practice multiplication with six-digit numbers</p>
+                                </div>
+                                <div class="digit-quiz-card" style="background-color:rgba(255, 255, 255, 0.144)"  onclick="startDigitQuiz('multiplication', 7)">
+                                    <span class="digit-icon">7️⃣</span>
+                                    <h5>seven Digits</h5>
+                                    <p>Practice multiplication with seven-digit numbers</p>
+                                </div>
+
+                            </div>
+                        </div>
         </div>
 
     </div>
         `
+        showSection("learn");
 }
 
 function showSection(section) {
@@ -646,7 +630,7 @@ function showSection(section) {
     document.querySelector('.multi-practice-content').classList.remove('active');
     document.querySelector(`.multi-${section}-content`).classList.add('active');
 }
-
+showSection("learn")
 // Show learn section by default
 
 

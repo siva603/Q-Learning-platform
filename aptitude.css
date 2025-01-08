@@ -781,10 +781,10 @@
 
 /* Multiplication Section Styles */
 .method-section {
-    background: rgba(0, 0, 0, 0.292);
     border-radius: 15px;
     padding: 30px;
     margin: 20px 0;
+    background: rgba(0, 0, 0, 0.492);
 }
 
 .method-title {
@@ -895,58 +895,60 @@
 
 .multi-method-container {
     padding: 20px;
-    margin: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: black;
     color: #ddd;
+    width: 100%;
 }
-.multi-top-buttons{
+
+
+.multi-top-buttons {
     display: flex;
-    padding: 0 20px 0 20px;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
 }
-.multi-tab-buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    padding: 5px;
-}
+
 .multi-top-button{
     padding: 10px 20px;
     cursor: pointer;
     border: none;
     border-radius: 4px;
     transition: all linear 0.3s;
+    background-color: #000;
+    color: #fff;
 }
-.multi-tab-button{
-    padding: 10px 20px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    width: 100%;
-}
-
 .multi-top-button:hover{
     transform: scale(1.1);
+}
+
+.multi-tab-buttons {
+    display: flex;
+    gap: 20px;
 }
 
 .multi-learn-button {
     background-color: #f84504d8;
     color: white;
-    padding: 0px 15rem;
+    padding: 0px 0;
     font-size: 1rem;
+    width: 90%;
+    padding: 0.8rem 0px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
 }
 .multi-learn-button:hover{
     background-color: #fb4605;
     color: white;
 }
 .multi-practice-button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
     background-color: #4CAF50;
+    width:90%;
     color: white;
-    padding: 0.8rem 15rem;
+    padding: 0.8rem 0px;
     font-size: 1rem;
 
 }
@@ -958,11 +960,21 @@
 .multi-learn-content, .multi-practice-content {
     display: none;
 }
-.multi-learn-content.active, .multi-practice-content.active {
+.multi-learn-content.active{
+    display: block;
+    h2{
+        text-align: left;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+    }
+}
+
+.multi-practice-content.active {
     display: block;
 }
 
 /* this is for quiz methods */
+
 .multi-quiz-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -977,6 +989,7 @@
     text-align: center;
     cursor: pointer;
 }
+
 /* end of quiz methods */
 
 .multi-calculation-container {
@@ -994,6 +1007,8 @@
     text-align: left;
 }
 
+
+
 /* multiplication code end  */
 
 
@@ -1001,7 +1016,14 @@
 @media (max-width: 768px) {
 
     .container{
+        padding: 0px;
+    }
+    .multi-method-container {
         padding: 10px;
+    }
+    .multi-top-button{
+        margin-top: 5px;
+        margin-left: 5px;
     }
     .welcome-screen.active{
         padding: 0px;
@@ -1010,8 +1032,8 @@
        padding: 5px;
     }
     .method-section{
-        padding: 2px;
-        background-color: #06070601;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.592);
     }
     .digit-quiz-grid {
         padding: 2px;
