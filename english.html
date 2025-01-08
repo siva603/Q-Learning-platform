@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Learning</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="english-style.css">
+    <link rel="stylesheet" href="words-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="entrance-animation">
+                <h1 class="title">English Learning</h1>
+                <div class="floating-shapes">
+                    <div class="shape"></div>
+                    <div class="shape"></div>
+                    <div class="shape"></div>
+                </div>
+            </div>
+            <div class="category-grid">
+                <button onclick="startEnglishSection('words')" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">📖</span>
+                        <span class="title">Words</span>
+                        <span class="description">Expand your vocabulary</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+                
+                <button onclick="startEnglishSection('parts-of-speech')" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">✍️</span>
+                        <span class="title">Parts of Speech</span>
+                        <span class="description">Learn grammatical structures</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+                
+                <button onclick="startEnglishSection('tenses')" class="category-btn">
+                    <div class="btn-content">
+                        <span class="icon">⏰</span>
+                        <span class="title">Tenses</span>
+                        <span class="description">Master verb tenses</span>
+                        <div class="btn-background"></div>
+                    </div>
+                </button>
+            </div>
+            
+            <button onclick="window.close()" class="exit-btn">
+                <span class="btn-text">Close</span>
+                <span class="btn-icon">↩</span>
+            </button>
+        </div>
+
+        <div class="english-section" id="englishSection" style="display: none;">
+            <div class="english-header">
+                <div class="english-learn" onclick="switchEnglishMode('learn')">LEARN</div>
+                <div class="english-practice" onclick="switchEnglishMode('practice')">PRACTICE</div>
+            </div>
+
+            <div id="englishLearnContent" class="english-content" style="display: none;">
+                <table class="english-table">
+                    <thead>
+                        <tr>
+                            <th>WORDS WITH MEANING IN ENGLISH AND TELUGU LANGUAGE</th>
+                            <th>VERB FORMS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="englishWordsBody">
+                        <!-- Words will be loaded here from JSON -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="englishQuizContent" class="english-quiz-container" style="display: none;">
+                <div class="english-quiz-types">
+                    <div class="english-quiz-box english-quiz-options" onclick="startQuiz('options')">
+                        OPTIONS QUIZ
+                    </div>
+                    <div class="english-quiz-box english-quiz-typing" onclick="startQuiz('typing')">
+                        TYPING OPTIONS QUIZ
+                    </div>
+                    <div class="english-quiz-box english-quiz-voice" onclick="startQuiz('voice')">
+                        VOICE QUIZ
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-container" id="quizContainer" style="display: none;">
+            <div class="quiz-header">
+                <div id="timer" class="glow">Time Left: 30s</div>
+                <div id="question-counter">Question 1/10</div>
+            </div>
+            <div class="question-area">
+                <h2 id="question">Question goes here</h2>
+                <div id="options" class="options-grid"></div>
+            </div>
+            <button onclick="exitQuiz()" class="exit-btn">
+                <span class="btn-text">Exit Quiz</span>
+                <span class="btn-icon">↩</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function startEnglishSection(section) {
+            switch(section) {
+                case 'words':
+                    document.getElementById('welcomeScreen').style.display = 'none';
+                    document.getElementById('englishSection').style.display = 'block';
+                    // Initialize learn mode by default
+                    switchEnglishMode('learn');
+                    break;
+                case 'parts-of-speech':
+                    alert('Parts of Speech section is coming soon!');
+                    break;
+                case 'tenses':
+                    alert('Tenses section is coming soon!');
+                    break;
+            }
+        }
+
+        function exitQuiz() {
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('welcomeScreen').style.display = 'block';
+        }
+
+        function switchEnglishMode(mode) {
+            // Remove active class from all buttons
+            document.querySelector('.english-learn').classList.remove('active');
+            document.querySelector('.english-practice').classList.remove('active');
+
+            // Hide all content sections
+            document.getElementById('englishLearnContent').style.display = 'none';
+            document.getElementById('englishQuizContent').style.display = 'none';
+
+            // Activate selected mode
+            if (mode === 'learn') {
+                document.querySelector('.english-learn').classList.add('active');
+                document.getElementById('englishLearnContent').style.display = 'block';
+            } else if (mode === 'practice') {
+                document.querySelector('.english-practice').classList.add('active');
+                document.getElementById('englishQuizContent').style.display = 'block';
+            }
+        }
+
+        function startQuiz(type) {
+            if (type === 'options') {
+                startOptionsQuiz();
+            } else if (type === 'typing') {
+                startTypingQuiz();
+            } else if (type === 'voice') {
+                startVoiceQuiz();
+            }
+        }
+
+        function startOptionsQuiz() {
+            alert('Options Quiz is coming soon!');
+        }
+
+        function startTypingQuiz() {
+            alert('Typing Quiz is coming soon!');
+        }
+
+        function startVoiceQuiz() {
+            alert('Voice Quiz is coming soon!');
+        }
+    </script>
+    <script src="english-script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
