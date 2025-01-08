@@ -21,9 +21,8 @@ function displayWords() {
         row.innerHTML = `
             <td>${word.word}</td>
             <td>
-                <div class="english-word-meaning">${word.telugu} - ${word.meaning}</div>
                 <div class="english-verb-forms">
-                    <div class="english-verb-form">${word.forms.v1} ( ${word.telugu} )</div>
+                    <div class="english-verb-form">${word.forms.v1} ( ${word.telugu_v1} )</div>
                     <div class="english-verb-form">${word.forms.v2} ( ${word.telugu_v2} )</div>
                     <div class="english-verb-form">${word.forms.v3} ( ${word.telugu_v3} )</div>
                     <div class="english-verb-form">${word.forms.v4} ( ${word.telugu_v4} )</div>

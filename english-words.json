@@ -3,38 +3,50 @@
         {
             "word": "RUN",
             "telugu": "పరుగు",
-            "meaning": "To move quickly using legs",
             "forms": {
                 "v1": "run",
                 "v2": "ran",
                 "v3": "run",
                 "v4": "running",
                 "v5": "runs"
-            }
+            },
+            "telugu_v1": "పరుగెత్తు",
+            "telugu_v2": "పరుగెత్తాడు",
+            "telugu_v3": "పరుగెత్తారు",
+            "telugu_v4": "పరుగెత్తుతున్నాడు",
+            "telugu_v5": "పరుగెత్తుతుంది"
         },
         {
             "word": "TAKE",
             "telugu": "తీసుకోండి",
-            "meaning": "To grab or hold something",
             "forms": {
                 "v1": "take",
                 "v2": "took",
                 "v3": "taken",
                 "v4": "taking",
                 "v5": "takes"
-            }
+            },
+            "telugu_v1": "తీసుకో",
+            "telugu_v2": "తీసుకున్నాడు",
+            "telugu_v3": "తీసుకున్నారు",
+            "telugu_v4": "తీసుకుంటున్నాడు",
+            "telugu_v5": "తీసుకుంటుంది"
         },
         {
             "word": "WRITE",
             "telugu": "రాయండి",
-            "meaning": "To form letters or characters",
             "forms": {
                 "v1": "write",
                 "v2": "wrote",
                 "v3": "written",
                 "v4": "writing",
                 "v5": "writes"
-            }
+            },
+            "telugu_v1": "రాయు",
+            "telugu_v2": "రాశాడు",
+            "telugu_v3": "రాశారు",
+            "telugu_v4": "రాస్తున్నాడు",
+            "telugu_v5": "రాస్తుంది"
         }
     ]
 }
