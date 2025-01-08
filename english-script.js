@@ -4,7 +4,7 @@ let englishWords = [];
 function speakWord(word) {
     const speech = new SpeechSynthesisUtterance(word);
     speech.lang = 'en-US';
-    speech.rate = 0.8; // Slightly slower for better clarity
+    speech.rate = 0.5; // Slightly slower for better clarity
     window.speechSynthesis.speak(speech);
 }
 
