@@ -41,6 +41,7 @@
 
 .english-content {
     padding: 20px;
+    overflow: auto;
 }
 
 .english-table {

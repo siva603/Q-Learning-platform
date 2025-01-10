@@ -74,7 +74,7 @@
                 </table>
             </div>
 
-            <div class="english-quiz-container">
+            <div class="english-quiz-container" id="englishQuizTypes">
                 <div class="english-quiz-types">
                     <div class="english-quiz-box" onclick="startVerbQuiz('options')">
                         <i class="quiz-icon">📝</i>
@@ -148,25 +148,6 @@
             function exitQuiz() {
                 document.getElementById('quizContainer').style.display = 'none';
                 document.getElementById('welcomeScreen').style.display = 'block';
-            }
-
-            function switchEnglishMode(mode) {
-                // Remove active class from all buttons
-                document.querySelector('.english-learn').classList.remove('active');
-                document.querySelector('.english-practice').classList.remove('active');
-
-                // Hide all content sections
-                document.getElementById('englishLearnContent').style.display = 'none';
-                document.getElementById('englishQuizContent').style.display = 'none';
-
-                // Activate selected mode
-                if (mode === 'learn') {
-                    document.querySelector('.english-learn').classList.add('active');
-                    document.getElementById('englishLearnContent').style.display = 'block';
-                } else if (mode === 'practice') {
-                    document.querySelector('.english-practice').classList.add('active');
-                    document.querySelector('.english-quiz-container').style.display = 'block';
-                }
             }
 
             function startQuiz(type) {

@@ -41,13 +41,14 @@ function displayWords(words) {
 }
 
 function switchEnglishMode(mode) {
+    console.log(mode);
     document.getElementById('englishLearnContent').style.display = 'none';
-    document.getElementById('englishQuizContent').style.display = 'none';
+    document.getElementById('englishQuizTypes').style.display = 'none';
     
     if (mode === 'learn') {
         document.getElementById('englishLearnContent').style.display = 'block';
     } else {
-        document.getElementById('englishQuizContent').style.display = 'block';
+        document.getElementById('englishQuizTypes').style.display = 'block';
     }
 }
 
