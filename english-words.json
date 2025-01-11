@@ -1,0 +1,725 @@
+{
+    "verbs": [
+        {
+            "word": "RUN",
+            "telugu": "పరుగు",
+            "forms": {
+                "v1": "run",
+                "v2": "ran",
+                "v3": "run",
+                "v4": "running",
+                "v5": "runs"
+            },
+            "telugu_v1": "పరుగెత్తు",
+            "telugu_v2": "పరుగెత్తాడు",
+            "telugu_v3": "పరుగెత్తారు",
+            "telugu_v4": "పరుగెత్తుతున్నాడు",
+            "telugu_v5": "పరుగెత్తుతుంది"
+        },
+        {
+            "word": "TAKE",
+            "telugu": "తీసుకోండి",
+            "forms": {
+                "v1": "take",
+                "v2": "took",
+                "v3": "taken",
+                "v4": "taking",
+                "v5": "takes"
+            },
+            "telugu_v1": "తీసుకో",
+            "telugu_v2": "తీసుకున్నాడు",
+            "telugu_v3": "తీసుకున్నారు",
+            "telugu_v4": "తీసుకుంటున్నాడు",
+            "telugu_v5": "తీసుకుంటుంది"
+        },
+        {
+            "word": "WRITE",
+            "telugu": "రాయండి",
+            "forms": {
+                "v1": "write",
+                "v2": "wrote",
+                "v3": "written",
+                "v4": "writing",
+                "v5": "writes"
+            },
+            "telugu_v1": "రాయు",
+            "telugu_v2": "రాశాడు",
+            "telugu_v3": "రాశారు",
+            "telugu_v4": "రాస్తున్నాడు",
+            "telugu_v5": "రాస్తుంది"
+        },
+        {
+            "word": "SLEEP",
+            "telugu": "నిద్ర",
+            "forms": {
+                "v1": "sleep",
+                "v2": "slept",
+                "v3": "slept",
+                "v4": "sleeping",
+                "v5": "sleeps"
+            },
+            "telugu_v1": "నిద్ర",
+            "telugu_v2": "నిద్రపోయాడు",
+            "telugu_v3": "నిద్రపోయారు",
+            "telugu_v4": "నిద్రపోతున్నాడు",
+            "telugu_v5": "నిద్రపోతుంది"
+        },
+        {
+            "word": "WRITE",
+            "telugu": "వ్రాయు",
+            "forms": {
+                "v1": "write",
+                "v2": "wrote",
+                "v3": "written",
+                "v4": "writing",
+                "v5": "writes"
+            },
+            "telugu_v1": "వ్రాయు",
+            "telugu_v2": "వ్రాసాడు",
+            "telugu_v3": "వ్రాసారు",
+            "telugu_v4": "వ్రాస్తున్నాడు",
+            "telugu_v5": "వ్రాస్తుంది"
+        },
+        {
+            "word": "READ",
+            "telugu": "చదువు",
+            "forms": {
+                "v1": "read",
+                "v2": "read",
+                "v3": "read",
+                "v4": "reading",
+                "v5": "reads"
+            },
+            "telugu_v1": "చదువు",
+            "telugu_v2": "చదివాడు",
+            "telugu_v3": "చదివారు",
+            "telugu_v4": "చదువుతున్నాడు",
+            "telugu_v5": "చదువుతుంది"
+        },
+        {
+            "word": "SPEAK",
+            "telugu": "మాట్లాడు",
+            "forms": {
+                "v1": "speak",
+                "v2": "spoke",
+                "v3": "spoken",
+                "v4": "speaking",
+                "v5": "speaks"
+            },
+            "telugu_v1": "మాట్లాడు",
+            "telugu_v2": "మాట్లాడాడు",
+            "telugu_v3": "మాట్లాడారు",
+            "telugu_v4": "మాట్లాడుతున్నాడు",
+            "telugu_v5": "మాట్లాడుతుంది"
+        },
+        {
+            "word": "DRINK",
+            "telugu": "తాగు",
+            "forms": {
+                "v1": "drink",
+                "v2": "drank",
+                "v3": "drunk",
+                "v4": "drinking",
+                "v5": "drinks"
+            },
+            "telugu_v1": "తాగు",
+            "telugu_v2": "తాగాడు",
+            "telugu_v3": "తాగారు",
+            "telugu_v4": "తాగుతున్నాడు",
+            "telugu_v5": "తాగుతుంది"
+        },
+        {
+            "word": "RUN",
+            "telugu": "పరుగు",
+            "forms": {
+                "v1": "run",
+                "v2": "ran",
+                "v3": "run",
+                "v4": "running",
+                "v5": "runs"
+            },
+            "telugu_v1": "పరుగెత్తు",
+            "telugu_v2": "పరుగెత్తాడు",
+            "telugu_v3": "పరుగెత్తారు",
+            "telugu_v4": "పరుగెత్తుతున్నాడు",
+            "telugu_v5": "పరుగెత్తుతుంది"
+        },
+        {
+            "word": "JUMP",
+            "telugu": "ఎగురు",
+            "forms": {
+                "v1": "jump",
+                "v2": "jumped",
+                "v3": "jumped",
+                "v4": "jumping",
+                "v5": "jumps"
+            },
+            "telugu_v1": "ఎగురు",
+            "telugu_v2": "ఎగిరాడు",
+            "telugu_v3": "ఎగిరారు",
+            "telugu_v4": "ఎగురుతున్నాడు",
+            "telugu_v5": "ఎగురుతుంది"
+        },
+        {
+            "word": "DRIVE",
+            "telugu": "డ్రైవ్ చేయు",
+            "forms": {
+                "v1": "drive",
+                "v2": "drove",
+                "v3": "driven",
+                "v4": "driving",
+                "v5": "drives"
+            },
+            "telugu_v1": "డ్రైవ్ చేయు",
+            "telugu_v2": "డ్రైవ్ చేశాడు",
+            "telugu_v3": "డ్రైవ్ చేశారు",
+            "telugu_v4": "డ్రైవ్ చేస్తున్నాడు",
+            "telugu_v5": "డ్రైవ్ చేస్తుంది"
+        },
+        {
+            "word": "FLY",
+            "telugu": "పరుగు",
+            "forms": {
+                "v1": "fly",
+                "v2": "flew",
+                "v3": "flown",
+                "v4": "flying",
+                "v5": "flies"
+            },
+            "telugu_v1": "ఎగురు",
+            "telugu_v2": "ఎగిరాడు",
+            "telugu_v3": "ఎగిరారు",
+            "telugu_v4": "ఎగురుతున్నాడు",
+            "telugu_v5": "ఎగురుతుంది"
+        },
+        {
+            "word": "COOK",
+            "telugu": "వంట",
+            "forms": {
+                "v1": "cook",
+                "v2": "cooked",
+                "v3": "cooked",
+                "v4": "cooking",
+                "v5": "cooks"
+            },
+            "telugu_v1": "వంట",
+            "telugu_v2": "వండాడు",
+            "telugu_v3": "వండారు",
+            "telugu_v4": "వండుతున్నాడు",
+            "telugu_v5": "వండుతుంది"
+        },
+        {
+            "word": "BEGIN",
+            "telugu": "ప్రారంభం",
+            "forms": {
+                "v1": "begin",
+                "v2": "began",
+                "v3": "begun",
+                "v4": "beginning",
+                "v5": "begins"
+            },
+            "telugu_v1": "ప్రారంభించు",
+            "telugu_v2": "ప్రారంభించాడు",
+            "telugu_v3": "ప్రారంభించారు",
+            "telugu_v4": "ప్రారంభిస్తున్నాడు",
+            "telugu_v5": "ప్రారంభిస్తుంది"
+        },
+        {
+            "word": "BRING",
+            "telugu": "తీసుకొనిరా",
+            "forms": {
+                "v1": "bring",
+                "v2": "brought",
+                "v3": "brought",
+                "v4": "bringing",
+                "v5": "brings"
+            },
+            "telugu_v1": "తీసుకొనిరా",
+            "telugu_v2": "తేవించు",
+            "telugu_v3": "తేవించారు",
+            "telugu_v4": "తీసుకొస్తున్నాడు",
+            "telugu_v5": "తీసుకొస్తుంది"
+        },
+        {
+            "word": "CATCH",
+            "telugu": "పట్టుకో",
+            "forms": {
+                "v1": "catch",
+                "v2": "caught",
+                "v3": "caught",
+                "v4": "catching",
+                "v5": "catches"
+            },
+            "telugu_v1": "పట్టుకో",
+            "telugu_v2": "పట్టుకున్నాడు",
+            "telugu_v3": "పట్టుకున్నారు",
+            "telugu_v4": "పట్టుకుంటున్నాడు",
+            "telugu_v5": "పట్టుకుంటుంది"
+        },
+        {
+            "word": "CHOOSE",
+            "telugu": "ఎంచుకో",
+            "forms": {
+                "v1": "choose",
+                "v2": "chose",
+                "v3": "chosen",
+                "v4": "choosing",
+                "v5": "chooses"
+            },
+            "telugu_v1": "ఎంచుకో",
+            "telugu_v2": "ఎంచుకున్నాడు",
+            "telugu_v3": "ఎంచుకున్నారు",
+            "telugu_v4": "ఎంచుకుంటున్నాడు",
+            "telugu_v5": "ఎంచుకుంటుంది"
+        },
+        {
+            "word": "COME",
+            "telugu": "రా",
+            "forms": {
+                "v1": "come",
+                "v2": "came",
+                "v3": "come",
+                "v4": "coming",
+                "v5": "comes"
+            },
+            "telugu_v1": "రా",
+            "telugu_v2": "వచ్చాడు",
+            "telugu_v3": "వచ్చారు",
+            "telugu_v4": "వస్తున్నాడు",
+            "telugu_v5": "వస్తుంది"
+        },
+        {
+            "word": "CUT",
+            "telugu": "కత్తిరించు",
+            "forms": {
+                "v1": "cut",
+                "v2": "cut",
+                "v3": "cut",
+                "v4": "cutting",
+                "v5": "cuts"
+            },
+            "telugu_v1": "కత్తిరించు",
+            "telugu_v2": "కత్తిరించాడు",
+            "telugu_v3": "కత్తిరించారు",
+            "telugu_v4": "కత్తిరిస్తున్నాడు",
+            "telugu_v5": "కత్తిరిస్తుంది"
+        },
+        {
+            "word": "DO",
+            "telugu": "చేయు",
+            "forms": {
+                "v1": "do",
+                "v2": "did",
+                "v3": "done",
+                "v4": "doing",
+                "v5": "does"
+            },
+            "telugu_v1": "చేయు",
+            "telugu_v2": "చేశాడు",
+            "telugu_v3": "చేశారు",
+            "telugu_v4": "చేస్తున్నాడు",
+            "telugu_v5": "చేస్తుంది"
+        },
+        {
+            "word": "DRAW",
+            "telugu": "వ్రాయు",
+            "forms": {
+                "v1": "draw",
+                "v2": "drew",
+                "v3": "drawn",
+                "v4": "drawing",
+                "v5": "draws"
+            },
+            "telugu_v1": "వ్రాయు",
+            "telugu_v2": "వ్రాసాడు",
+            "telugu_v3": "వ్రాసారు",
+            "telugu_v4": "వ్రాస్తున్నాడు",
+            "telugu_v5": "వ్రాస్తుంది"
+        },
+        {
+            "word": "DRIVE",
+            "telugu": "డ్రైవ్ చేయు",
+            "forms": {
+                "v1": "drive",
+                "v2": "drove",
+                "v3": "driven",
+                "v4": "driving",
+                "v5": "drives"
+            },
+            "telugu_v1": "డ్రైవ్ చేయు",
+            "telugu_v2": "డ్రైవ్ చేశాడు",
+            "telugu_v3": "డ్రైవ్ చేశారు",
+            "telugu_v4": "డ్రైవ్ చేస్తున్నాడు",
+            "telugu_v5": "డ్రైవ్ చేస్తుంది"
+        },
+        {
+            "word": "FALL",
+            "telugu": "పడిపోవు",
+            "forms": {
+                "v1": "fall",
+                "v2": "fell",
+                "v3": "fallen",
+                "v4": "falling",
+                "v5": "falls"
+            },
+            "telugu_v1": "పడిపోవు",
+            "telugu_v2": "పడిపోయాడు",
+            "telugu_v3": "పడిపోయారు",
+            "telugu_v4": "పడుతున్నాడు",
+            "telugu_v5": "పడిపోతుంది"
+        },
+        {
+            "word": "FIGHT",
+            "telugu": "పోరు",
+            "forms": {
+                "v1": "fight",
+                "v2": "fought",
+                "v3": "fought",
+                "v4": "fighting",
+                "v5": "fights"
+            },
+            "telugu_v1": "పోరు",
+            "telugu_v2": "పోరాడాడు",
+            "telugu_v3": "పోరాడారు",
+            "telugu_v4": "పోరాడుతున్నాడు",
+            "telugu_v5": "పోరాడుతుంది"
+        },
+        {
+            "word": "FIND",
+            "telugu": "కనుగొను",
+            "forms": {
+                "v1": "find",
+                "v2": "found",
+                "v3": "found",
+                "v4": "finding",
+                "v5": "finds"
+            },
+            "telugu_v1": "కనుగొను",
+            "telugu_v2": "కనుగొన్నాడు",
+            "telugu_v3": "కనుగొన్నారు",
+            "telugu_v4": "కనుగొంటున్నాడు",
+            "telugu_v5": "కనుగొంటుంది"
+        },
+        {
+            "word": "FORGET",
+            "telugu": "మర్చిపో",
+            "forms": {
+                "v1": "forget",
+                "v2": "forgot",
+                "v3": "forgotten",
+                "v4": "forgetting",
+                "v5": "forgets"
+            },
+            "telugu_v1": "మర్చిపో",
+            "telugu_v2": "మర్చిపోయాడు",
+            "telugu_v3": "మర్చిపోయారు",
+            "telugu_v4": "మర్చిపోతున్నాడు",
+            "telugu_v5": "మర్చిపోతుంది"
+        },
+        {
+            "word": "GET",
+            "telugu": "పొందు",
+            "forms": {
+                "v1": "get",
+                "v2": "got",
+                "v3": "gotten",
+                "v4": "getting",
+                "v5": "gets"
+            },
+            "telugu_v1": "పొందు",
+            "telugu_v2": "పొందాడు",
+            "telugu_v3": "పొందారు",
+            "telugu_v4": "పొందుతున్నాడు",
+            "telugu_v5": "పొందుతుంది"
+        },
+        {
+            "word": "GIVE",
+            "telugu": "ఇవ్వు",
+            "forms": {
+                "v1": "give",
+                "v2": "gave",
+                "v3": "given",
+                "v4": "giving",
+                "v5": "gives"
+            },
+            "telugu_v1": "ఇవ్వు",
+            "telugu_v2": "ఇచ్చాడు",
+            "telugu_v3": "ఇచ్చారు",
+            "telugu_v4": "ఇస్తున్నాడు",
+            "telugu_v5": "ఇస్తుంది"
+        },
+        {
+            "word": "HIT",
+            "telugu": "చెప్పు",
+            "forms": {
+                "v1": "hit",
+                "v2": "hit",
+                "v3": "hit",
+                "v4": "hitting",
+                "v5": "hits"
+            },
+            "telugu_v1": "చెప్పు",
+            "telugu_v2": "చెప్పాడు",
+            "telugu_v3": "చెప్పారు",
+            "telugu_v4": "చెప్పుతున్నాడు",
+            "telugu_v5": "చెప్పుతుంది"
+        },
+        {
+            "word": "HOLD",
+            "telugu": "చెప్పు",
+            "forms": {
+                "v1": "hold",
+                "v2": "held",
+                "v3": "held",
+                "v4": "holding",
+                "v5": "holds"
+            },
+            "telugu_v1": "చెప్పు",
+            "telugu_v2": "చెప్పాడు",
+            "telugu_v3": "చెప్పారు",
+            "telugu_v4": "చెప్పుతున్నాడు",
+            "telugu_v5": "చెప్పుతుంది"
+        },
+        {
+            "word": "GO",
+            "telugu": "వెళ్ళు",
+            "forms": {
+                "v1": "go",
+                "v2": "went",
+                "v3": "gone",
+                "v4": "going",
+                "v5": "goes"
+            },
+            "telugu_v1": "వెళ్ళు",
+            "telugu_v2": "వెళ్ళాడు",
+            "telugu_v3": "వెళ్ళారు",
+            "telugu_v4": "వెళ్ళుతున్నాడు",
+            "telugu_v5": "వెళ్ళుతుంది"
+        },
+        {
+            "word": "HAVE",
+            "telugu": "కలిగించు",
+            "forms": {
+                "v1": "have",
+                "v2": "had",
+                "v3": "had",
+                "v4": "having",
+                "v5": "has"
+            },
+            "telugu_v1": "కలిగించు",
+            "telugu_v2": "కలిగించాడు",
+            "telugu_v3": "కలిగించారు",
+            "telugu_v4": "కలిగిస్తున్నాడు",
+            "telugu_v5": "కలిగిస్తుంది"
+        },
+        {
+            "word": "HEAR",
+            "telugu": "విని",
+            "forms": {
+                "v1": "hear",
+                "v2": "heard",
+                "v3": "heard",
+                "v4": "hearing",
+                "v5": "hears"
+            },
+            "telugu_v1": "విని",
+            "telugu_v2": "విన్నాడు",
+            "telugu_v3": "విన్నారు",
+            "telugu_v4": "వింటున్నాడు",
+            "telugu_v5": "వింటుంది"
+        },
+        {
+            "word": "KNOW",
+            "telugu": "తెలుసు",
+            "forms": {
+                "v1": "know",
+                "v2": "knew",
+                "v3": "known",
+                "v4": "knowing",
+                "v5": "knows"
+            },
+            "telugu_v1": "తెలుసు",
+            "telugu_v2": "తెలిసాడు",
+            "telugu_v3": "తెలిసారు",
+            "telugu_v4": "తెలుసుకుంటున్నాడు",
+            "telugu_v5": "తెలుసుకుంటుంది"
+        },
+        {
+            "word": "LEARN",
+            "telugu": "నేర్చుకో",
+            "forms": {
+                "v1": "learn",
+                "v2": "learnt",
+                "v3": "learnt",
+                "v4": "learning",
+                "v5": "learns"
+            },
+            "telugu_v1": "నేర్చుకో",
+            "telugu_v2": "నేర్చుకున్నాడు",
+            "telugu_v3": "నేర్చుకున్నారు",
+            "telugu_v4": "నేర్చుకుంటున్నాడు",
+            "telugu_v5": "నేర్చుకుంటుంది"
+        },
+        {
+            "word": "LEAVE",
+            "telugu": "వదిలి",
+            "forms": {
+                "v1": "leave",
+                "v2": "left",
+                "v3": "left",
+                "v4": "leaving",
+                "v5": "leaves"
+            },
+            "telugu_v1": "వదిలి",
+            "telugu_v2": "వదిలాడు",
+            "telugu_v3": "వదిలారు",
+            "telugu_v4": "వదిలి వెళ్ళుతున్నాడు",
+            "telugu_v5": "వదిలి వెళ్తుంది"
+        },
+        {
+            "word": "MAKE",
+            "telugu": "చేసు",
+            "forms": {
+                "v1": "make",
+                "v2": "made",
+                "v3": "made",
+                "v4": "making",
+                "v5": "makes"
+            },
+            "telugu_v1": "చేసు",
+            "telugu_v2": "చేశాడు",
+            "telugu_v3": "చేశారు",
+            "telugu_v4": "చేస్తున్నాడు",
+            "telugu_v5": "చేస్తుంది"
+        },
+        {
+            "word": "MEET",
+            "telugu": "కలుసుకొను",
+            "forms": {
+                "v1": "meet",
+                "v2": "met",
+                "v3": "met",
+                "v4": "meeting",
+                "v5": "meets"
+            },
+            "telugu_v1": "కలుసుకొను",
+            "telugu_v2": "కలుసుకున్నాడు",
+            "telugu_v3": "కలుసుకున్నారు",
+            "telugu_v4": "కలుసుకుంటున్నాడు",
+            "telugu_v5": "కలుసుకుంటుంది"
+        },
+        {
+            "word": "PUT",
+            "telugu": "వుంచు",
+            "forms": {
+                "v1": "put",
+                "v2": "put",
+                "v3": "put",
+                "v4": "putting",
+                "v5": "puts"
+            },
+            "telugu_v1": "వుంచు",
+            "telugu_v2": "వుంచాడు",
+            "telugu_v3": "వుంచారు",
+            "telugu_v4": "వుంచుతున్నాడు",
+            "telugu_v5": "వుంచుతుంది"
+        },
+        {
+            "word": "READ",
+            "telugu": "చదువు",
+            "forms": {
+                "v1": "read",
+                "v2": "read",
+                "v3": "read",
+                "v4": "reading",
+                "v5": "reads"
+            },
+            "telugu_v1": "చదువు",
+            "telugu_v2": "చదివాడు",
+            "telugu_v3": "చదివారు",
+            "telugu_v4": "చదువుతున్నాడు",
+            "telugu_v5": "చదువుతుంది"
+        },
+        {
+            "word": "RUN",
+            "telugu": "పరుగు",
+            "forms": {
+                "v1": "run",
+                "v2": "ran",
+                "v3": "run",
+                "v4": "running",
+                "v5": "runs"
+            },
+            "telugu_v1": "పరుగెత్తు",
+            "telugu_v2": "పరుగెత్తాడు",
+            "telugu_v3": "పరుగెత్తారు",
+            "telugu_v4": "పరుగెత్తుతున్నాడు",
+            "telugu_v5": "పరుగెత్తుతుంది"
+        },
+        {
+            "word": "SEE",
+            "telugu": "చూడు",
+            "forms": {
+                "v1": "see",
+                "v2": "saw",
+                "v3": "seen",
+                "v4": "seeing",
+                "v5": "sees"
+            },
+            "telugu_v1": "చూడు",
+            "telugu_v2": "చూసాడు",
+            "telugu_v3": "చూసారు",
+            "telugu_v4": "చూస్తున్నాడు",
+            "telugu_v5": "చూస్తుంది"
+        },
+        {
+            "word": "SELL",
+            "telugu": "అమ్ము",
+            "forms": {
+                "v1": "sell",
+                "v2": "sold",
+                "v3": "sold",
+                "v4": "selling",
+                "v5": "sells"
+            },
+            "telugu_v1": "అమ్ము",
+            "telugu_v2": "అమ్మాడు",
+            "telugu_v3": "అమ్మారు",
+            "telugu_v4": "అమ్ముతున్నాడు",
+            "telugu_v5": "అమ్ముతుంది"
+        },
+        {
+            "word": "SING",
+            "telugu": "పాడు",
+            "forms": {
+                "v1": "sing",
+                "v2": "sang",
+                "v3": "sung",
+                "v4": "singing",
+                "v5": "sings"
+            },
+            "telugu_v1": "పాడు",
+            "telugu_v2": "పాడాడు",
+            "telugu_v3": "పాడారు",
+            "telugu_v4": "పాడుతున్నాడు",
+            "telugu_v5": "పాడుతుంది"
+        },
+        {
+            "word": "SIT",
+            "telugu": "కూర్చో",
+            "forms": {
+                "v1": "sit",
+                "v2": "sat",
+                "v3": "sat",
+                "v4": "sitting",
+                "v5": "sits"
+            },
+            "telugu_v1": "కూర్చో",
+            "telugu_v2": "కూర్చొన్నాడు",
+            "telugu_v3": "కూర్చున్నారు",
+            "telugu_v4": "కూర్చున్నాడు",
+            "telugu_v5": "కూర్చుంది"
+        }              
+
+    ]
+}

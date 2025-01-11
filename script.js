@@ -128,6 +128,11 @@ function showLoadingScreen() {
 }
 
 async function startQuiz(category) {
+    if (category === 'english') {
+        // Open English learning page in a new tab
+        window.open('english.html', '_blank');
+        return;
+    }
 
     if (category === 'r20') {
         showR20Selection();
@@ -1468,12 +1473,12 @@ function shuffleOptions(question) {
 document.addEventListener('DOMContentLoaded', () => {
     const welcomeScreen = document.getElementById('welcomeScreen');
     if (welcomeScreen) {
-        welcomeScreen.classList.add('active');
+        welcomeScreen.style.display = 'block';
     }
 });
 
 function checkFileExists(url) {
-    return fetch(url)
+    return fetch(url, { method: 'HEAD' })
         .then(response => response.ok)
         .catch(() => false);
 }
