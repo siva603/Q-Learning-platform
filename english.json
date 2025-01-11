@@ -1,0 +1,25 @@
+{
+    "english_quiz": {
+        "sections": [
+            {
+                "id": "words",
+                "title": "Words",
+                "description": "Expand your vocabulary",
+                "icon": "📖"
+            },
+            {
+                "id": "parts-of-speech",
+                "title": "Parts of Speech",
+                "description": "Learn grammatical structures",
+                "icon": "✍️"
+            },
+            {
+                "id": "tenses",
+                "title": "Tenses",
+                "description": "Master verb tenses",
+                "icon": "⏰"
+            }
+        ],
+        "coming_soon": true
+    }
+}
